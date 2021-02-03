@@ -9,9 +9,6 @@
 	box-sizing: border-box;
 }
 
-img {
-	display: block;
-}
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
@@ -31,6 +28,5 @@ img {
 .in-grid {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
 	align-items: center;
 }
