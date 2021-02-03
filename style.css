@@ -1,6 +1,56 @@
+@charset "UTF-8";
 h2 {
   color: #ff0000;
   font-family: "Verdana";
+}
+
+.card-comic-basica {
+  margin: 0 10px 40px;
+  cursor: pointer;
+  box-shadow: 10px 5px 5px #bdb9b9;
+}
+
+.comic-img-contenedor {
+  max-width: 230px;
+  height: auto;
+}
+.comic-img-contenedor img {
+  width: 100%;
+}
+
+.comic-titulo {
+  font-size: 14px;
+  margin: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.in-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .boton-principal {

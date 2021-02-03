@@ -1,0 +1,18 @@
+.card-comic-basica {
+    margin: 0 10px 40px;
+    cursor: pointer;
+    box-shadow: 10px 5px 5px rgb(189, 185, 185);
+}
+
+.comic-img-contenedor {
+    max-width: 230px;
+    height: auto;
+    img {
+        width: 100%;
+    }
+}
+
+.comic-titulo {
+    font-size: 14px;
+    margin: 5px;
+}
