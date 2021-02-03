@@ -1,3 +1,8 @@
+
+/* h1 {
+    color: $color-principal;
+} */
+=======
 @charset "UTF-8";
 h2 {
   color: #ff0000;
@@ -62,3 +67,4 @@ h2 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
