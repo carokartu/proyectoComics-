@@ -14,7 +14,9 @@ img {
 }
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
-
+.is-hidden {
+    display:block;
+}
 .in-line {
 	display: flex;
 	justify-content: center;
