@@ -1,0 +1,10 @@
+@import "tipography.scss";
+
+$color-principal: #ff0000;
+$color-secundario: #0000ff;
+
+
+h2 {
+  color: $color-principal;
+  font-family: $tipografia-titulos;
+}

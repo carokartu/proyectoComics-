@@ -1,0 +1,32 @@
+@import "header";
+@import "footer";
+@import "seccion-principal";
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+    display:block;
+}
+.in-line {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.in-stack {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.in-grid {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
