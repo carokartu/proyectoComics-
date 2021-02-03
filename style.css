@@ -3,6 +3,10 @@ h2 {
   font-family: "Verdana";
 }
 
+.is-hidden {
+  display: block;
+}
+
 .boton-principal {
   width: 200px;
   height: 48px;
