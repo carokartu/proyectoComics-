@@ -9,7 +9,9 @@
     <title>PROYECTO COMICS ADA</title>
 </head>
 <body>
-        
+
+    <!--************ HEADER Y HERO ********************-->
+
     <header class="logo-contenedor in-line">
         <h1 class="logo">ADA COMICS</h1> 
     </header>
@@ -18,31 +20,52 @@
         <img src="images\hero.jpg"/>  
     </div>
 
-    <div class="columna">
-        <div class="buscar"> 
-            <h2 class="busqueda-comic"> 
-                Búsqueda
-            </h2>
-        </div> 
-
-        <div class="buscar-input">
-            <input type="text"> 
-            <i class="fas fa-search"></i>
-
-        </div>
-    <div class="buscar-tipo"> 
-        <!-- aca van los buscadores con flecha para elegir tipo y orden  -->
-    <button class="buscar-boton">
-        buscar
-
-    </button>
     
+    <!--************ FORMULARIO ********************-->
 
-    </div>
+    <form class= "formulario in-line">
 
+        <div class="busqueda-contenedor in-stack">
+            <div>
+                <h3 class= "busqueda-titulo">BÚSQUEDA</h3>
+            </div>
+            <label for="buscador-input" 
+                class="buscador-input-contenedor in-line">
+                <input type="text"
+                    id="input-search"
+                    placeholder="Ingresá tu búsqueda"
+                    aria-label="Ingresá tu búsqueda">
+                </input>
+                <i class="fas fa-search search-icon"
+                aria-hidden="true">
+                </i>
+            </label>
+        </div>
+        <div>
+            <label>TIPO
+                <select name="tipo">
+                    <option value="comics" selected>COMICS</option>
+                    <option value="personajes">PERSONAJES</option>
+                  </select>
+            </label>
 
-    </div>
+            <label>ORDEN
+                <select name="tipo">
+                    <option value="a-z" selected>A-Z</option>
+                    <option value="z-a">Z-A</option>
+                    <option value="mas-nuevos">MAS NUEVOS</option>
+                    <option value="mas-viejos">MAS VIEJOS</option>
+                  </select>
+            </label>
 
+            <button type= "submit" class="buscar-boton">
+             Buscar
+            </button>
+        </div>
+    </form>
+        
+    
+    <!--************ SECCION PRINCIPAL ********************-->
 
     <section class="seccion-principal">
         <div class= "resultados-titulo-contenedor">
@@ -52,9 +75,12 @@
         <div class="resultados-cards-contenedor in-grid"></div>
     </section>
 
+
+    <!--************ FOOTER ********************-->
+
     <footer>
         <div> 
-        FOOTER 
+              FOOTER 
         </div>
     </footer>
 
