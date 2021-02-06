@@ -16,7 +16,7 @@ const contenedorDeCards = document.querySelector(
 
 mostrarTarjetasDeComics = () => {
 
-  fetch('https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f')
+  fetch('https://gateway.marvel.com/v1/public/comics?apikey=******************')
   .then((res) => {
     return res.json()
   })
