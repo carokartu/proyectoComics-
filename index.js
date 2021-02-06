@@ -1,174 +1,11 @@
-console.log("hola Comics");
-
-const comics = [
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  },
-  {
-    titulo: "100th Anniversary Special (2014) #1",
-    imagenComic: "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/53c406e09649c.jpg",
-    fechaDePublicacion: 23 / 7 / 2014,
-    guionistas: "",
-    descripcion:"THE AVENGERS Following the failed Badoon invasion of Earth and America disappearance into the Negative Zone, how will the Avengers of 2061",
-    personajes: [{
-    nombre: "personaje 1",
-    imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf/portrait_uncanny.jpg"
-    },
-     {
-        nombre: "personaje 2",
-        imagenPersonaje: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/portrait_uncanny.jpg"
-     }
-    ]
-  }
- 
-];
+let comics = [];
 
 const seccionPrincipal = document.querySelector(".seccion-principal");
 const resultadosTitulo = document.querySelector(
   ".resultados-titulo-contenedor"
 );
+const cantidadDeResultados = document.querySelector(".cantidad-resultados")
+
 const contenedorDeCards = document.querySelector(
   ".resultados-cards-contenedor"
 );
@@ -178,20 +15,37 @@ const contenedorDeCards = document.querySelector(
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
 mostrarTarjetasDeComics = () => {
-  comics.map((comic) => {
-    resultadosTitulo.classList.toggle("is-hidden");
 
-    contenedorDeCards.innerHTML += `
-            <article class="card-comic-basica in-stack">
-                  <div class="comic-img-contenedor ">              
-                      <img src="${comic.imagenComic}" />        
-                  </div>   
-                  <div class="comic-titulo-contenedor">
-                      <h3 class="comic-titulo">${comic.titulo}</h3>
-                  </div>
-             </article>
-        `;
-  });
+  fetch('https://gateway.marvel.com/v1/public/comics?apikey=******************')
+  .then((res) => {
+    return res.json()
+  })
+  .then((data) => {
+    console.log(data)
+    comics = data.data.results
+  
+    comics.map((comic) => {
+      resultadosTitulo.classList.toggle("is-hidden");
+      cantidadDeResultados.textContent = ` ${data.data.count}`;
+  
+      contenedorDeCards.innerHTML += `
+              <article class="card-comic-basica in-stack">
+                    <div class="comic-img-contenedor ">              
+                        <img src="${comic.thumbnail.path}.jpg" />        
+                    </div>   
+                    <div class="comic-titulo-contenedor">
+                        <h3 class="comic-titulo">${comic.title}</h3>
+                    </div>
+               </article>
+          `;
+    });
+  
+  })
+  .catch((err) => {
+    console.log(err)
+    seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
+  })
+  
 };
 
 mostrarTarjetasDeComics();
