@@ -1,20 +1,122 @@
 @charset "UTF-8";
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @import "abstracts/abstracts";
- *   |         ^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   layout\_seccion-principal.scss 1:9  @import
- *   layout\_layout.scss 4:9             @import
- *   main.scss 3:9                       root stylesheet */
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono", "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+.card-comic-basica:hover {
+  position: relative;
+  transform: translateY(-10px);
+  transition: 0.2s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.boton-principal {
+  width: 200px;
+  height: 48px;
+  margin: 20px 67px 0 68px;
+  padding: 15px 30.5px 13px;
+  background-color: #0085ca;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
   display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   ╷\a 1 │ @import \"abstracts/abstracts\";\d\a   │         ^^^^^^^^^^^^^^^^^^^^^\a   ╵\a   layout\\_seccion-principal.scss 1:9  @import\a   layout\\_layout.scss 4:9             @import\a   main.scss 3:9                       root stylesheet";
+}
+
+.in-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background-color: #020202;
+  height: 50px;
+}
+
+.logo {
+  background-color: #ed1d23;
+  color: #fff;
+  font-family: "Bangers", cursive;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 50px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.hero {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+}
+
+.formulario {
+  justify-content: space-between;
+  margin: 60px 40px 80px;
+}
+
+.formulario-contenedor {
+  justify-content: flex-start;
+}
+
+.card-comic-basica {
+  cursor: pointer;
+}
+
+.card-comic-basica:hover {
+  position: relative;
+  transform: translateY(-10px);
+  transition: 0.2s;
+}
+
+.card-comic-basica {
+  margin: 0 10px 40px;
+  box-shadow: 10px 5px 5px #bdb9b9;
+}
+.comic-img-contenedor {
+  max-width: 230px;
+  height: auto;
+}
+.comic-img-contenedor img {
+  width: 100%;
+}
+
+.comic-titulo {
+  font-size: 14px;
+  margin: 5px;
+}
+
+.card {
+  padding: 15px;
+  margin: 15px;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
 /*# sourceMappingURL=style.css.map */
