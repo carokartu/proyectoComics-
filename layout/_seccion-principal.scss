@@ -1,10 +1,12 @@
-@import "abstracts/abstracts";
+@import "../abstracts/extends";
+@import "../base/animaciones";
 
 
 .card-comic-basica {
-    @extend %is-clickeable;
+    @extend %is-clickeable !optional;
     &:hover {
-        @extend %move-up;
+       @extend %move-up;
+      // border: 10px solid red ;
     }
     margin: 0 10px 40px;
     box-shadow: 10px 5px 5px rgb(189, 185, 185);
