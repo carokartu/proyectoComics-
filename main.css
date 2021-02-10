@@ -17,4 +17,4 @@ body::before {
   content: "Error: Can't find stylesheet to import.\a   ╷\a 1 │ @import \"abstracts/abstracts\";\d\a   │         ^^^^^^^^^^^^^^^^^^^^^\a   ╵\a   layout\\_seccion-principal.scss 1:9  @import\a   layout\\_layout.scss 4:9             @import\a   main.scss 3:9                       root stylesheet";
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */
