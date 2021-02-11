@@ -1,5 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 .card-comic-basica:hover {
   position: relative;
   transform: translateY(-10px);
@@ -20,31 +23,25 @@
   background-color: #0085ca;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.card-comic-basica {
+  cursor: pointer;
 }
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
-.is-hidden {
-  display: block;
-}
-
-.in-line {
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.in-stack {
+.busqueda-contenedor {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.in-grid {
+.resultados-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -76,23 +73,102 @@ header {
   width: 100%;
 }
 
-.formulario {
-  justify-content: space-between;
-  margin: 60px 40px 80px;
+.card-comic-basica {
+  cursor: pointer;
 }
 
-.formulario-contenedor {
-  justify-content: flex-start;
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-contenedor {
+  background-color: black;
+  color: white;
+  padding: 40px 0px;
+}
+
+.footer-texto-contenedor {
+  font-family: "Roboto", sans-serif;
 }
 
 .card-comic-basica {
   cursor: pointer;
 }
 
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .logo-contenedor, .footer-texto-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.formulario {
+  font-family: "Roboto", sans-serif;
+  justify-content: space-between;
+  margin: 60px 40px 80px;
+}
+
+.card-comic-basica {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .card-comic-basica:hover {
   position: relative;
   transform: translateY(-10px);
   transition: 0.2s;
+}
+
+.seccion-principal {
+  font-family: "Roboto", sans-serif;
 }
 
 .card-comic-basica {
@@ -117,6 +193,30 @@ header {
   margin: 15px;
   border-radius: 5px;
   transition: 0.3s;
+}
+
+.card-comic-basica {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .paginacion-contenedor {

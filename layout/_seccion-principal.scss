@@ -1,6 +1,14 @@
 @import "../abstracts/extends";
 @import "../base/animaciones";
+@import "../base/tipography";
 
+.seccion-principal {
+    font-family: $tipografia-principal;
+}
+
+.resultados-cards-contenedor {
+    @extend %in-grid;
+}
 
 .card-comic-basica {
     @extend %is-clickeable !optional;
