@@ -4,35 +4,14 @@
 
 .seccion-principal {
     font-family: $tipografia-principal;
+    margin: 80px 10px 50px;
+
 }
 
 .resultados-cards-contenedor {
     @extend %in-grid;
 }
 
-.card-comic-basica {
-    @extend %is-clickeable !optional;
-    &:hover {
-       @extend %move-up;
-      // border: 10px solid red ;
-    }
-    margin: 0 10px 40px;
-    box-shadow: 10px 5px 5px rgb(189, 185, 185);
-    
-}
-
-.comic-img-contenedor {
-    max-width: 230px;
-    height: auto;
-    img {
-        width: 100%;
-    }
-}
-
-.comic-titulo {
-    font-size: 14px;
-    margin: 5px;
-}
 
 .card {
 	padding: 15px;

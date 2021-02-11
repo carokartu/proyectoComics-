@@ -19,9 +19,7 @@ mostrarTarjetasDeComics = (url) => {
   contenedorDeCards.innerHTML = ``;
 
   fetch(`${url}`)
-  .then((res) => {
-    return res.json()
-  })
+  .then((res) => res.json())
   .then((data) => {
     console.log(data)
     comics = data.data.results
@@ -31,7 +29,7 @@ mostrarTarjetasDeComics = (url) => {
       cantidadDeResultados.textContent = ` ${data.data.count}`;
   
       contenedorDeCards.innerHTML += `
-              <article class="card-comic-basica in-stack">
+              <article class="card-comic-basica">
                     <div class="comic-img-contenedor ">              
                         <img src="${comic.thumbnail.path}.jpg" />        
                     </div>   
