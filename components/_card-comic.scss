@@ -31,10 +31,10 @@
     margin: 5px;
 }
 
-.card-extendida-contenedor {
+.card-detalle-contenedor {
     font-family: $tipografia-principal;
 }
-.card-comic-extendida-contenedor {
+.card-comic-detalle-contenedor {
     display:flex;
     .comic-img-contenedor {
         @extend %img-contenedor;

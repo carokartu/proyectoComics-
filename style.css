@@ -52,11 +52,11 @@
   align-items: center;
 }
 
-.card-comic-extendida-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
+.card-comic-detalle-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
   max-width: 230px;
   height: auto;
 }
-.card-comic-extendida-contenedor .comic-img-contenedor img, .card-comic-basica .comic-img-contenedor img {
+.card-comic-detalle-contenedor .comic-img-contenedor img, .card-comic-basica .comic-img-contenedor img {
   width: 100%;
 }
 
@@ -69,14 +69,14 @@
   margin: 5px;
 }
 
-.card-extendida-contenedor {
+.card-detalle-contenedor {
   font-family: "Roboto", sans-serif;
 }
 
-.card-comic-extendida-contenedor {
+.card-comic-detalle-contenedor {
   display: flex;
 }
-.card-comic-extendida-contenedor .comic-img-contenedor {
+.card-comic-detalle-contenedor .comic-img-contenedor {
   margin-right: 20px;
 }
 
