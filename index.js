@@ -42,7 +42,90 @@ mostrarTarjetasDeComics = (url) => {
           `;
     });
   
-  })
+
+
+    // ABRIR CARD DETALLE CON ONCLICK
+
+    const todasLasCardsDeComics = document.querySelectorAll(".card-comic-basica")
+
+    todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
+      comicCard.onclick = () =>  {
+
+           const comicCardElegida = comics[cardIndice]
+
+           contenedorDeCards.innerHTML = ``;
+           resultadosTitulo.classList.toggle("is-hidden");
+           cantidadDeResultados.classList.toggle("is-hidden");
+ 
+           seccionPrincipal.innerHTML = `
+ 
+             <div class= "card-detalle-contenedor">
+               <div class= "card-comic-detalle-contenedor">
+                   <div class= "comic-img-contenedor">
+                       <img class= "comic-img" src="${comicCardElegida.thumbnail.path}.jpg">
+                   </div>
+                   <div class= "comic-contenido-contenedor">
+                       <h1 class= "comic-contenido-titulo">${comicCardElegida.title}</h2>
+                       <h3>Publicado:</h3>
+                       <p>${Date(comicCardElegida.dates[1].date)}</p>
+                       <h3>Guionistas:</h3> 
+                       <p class= "guionistas-nombres"></p>
+               
+                       <h3>Descripción: </h3>
+                       <p>${comicCardElegida.title}</p>
+                   </div>
+               </div>
+ 
+               <div class= "personajes-contenedor">
+                   <h3>Personajes</h3>
+                   <h4><span class="cantidad-personajes">${comicCardElegida.characters.available}</span> ENCONTRADOS</h4>
+                   <div class= "personajes-cards-contenedor">
+                   
+                   </div>               
+               </div>
+           </div>      
+           `;
+
+
+           // rellenar creadores
+          const creadores = comicCardElegida.creators.items
+          const guionistasNombres = document.querySelector(".guionistas-nombres")
+              
+          creadores.forEach(creador=> {
+              guionistasNombres.innerHTML += `
+              ${creador.name} - 
+              `
+          }) //cierra foreach de creadores
+
+           
+
+          // rellenar tarjetas de personajes
+          const personajes = comicCardElegida.characters.items
+          const todasLasCardsDePersonajes = document.querySelector(".personajes-cards-contenedor")
+
+          personajes.forEach(personaje => {
+     
+            todasLasCardsDePersonajes.innerHTML += `
+                <article class= "card-personaje-simple">
+                    <div class="personaje-img-contenedor">              
+                        <img src="${personaje.resourceURI}.jpg"/>        
+                    </div>   
+                    <div class="personaje-nombre-contenedor">
+                        <h3 class="personaje-nombre">${personaje.name}</h3>
+                    </div>
+                </article> 
+            `            
+          }) // cierra el foreach de personajes
+
+
+
+
+
+
+      }; // cierra el onclick
+    }); // cierra el foreach
+
+ }) // cierra el then
   .catch((err) => {
     console.log(err)
     seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
@@ -52,25 +135,39 @@ mostrarTarjetasDeComics = (url) => {
 
 mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
 
-// mostrarTarjetaElegida = (tarjeta) => {
+  
+   /**  MOSTRAR CREADORES Y PERSONAJES
 
-//     resultadosTitulo.classList.add("is-hidden")
+ 
 
-//     contenedorDeCards.innerHTML = `
-//         <article class="card-comic-basica">
-//               <div class="comic-img-contenedor">
-//                   <img src="${comic.img}" />
-//               </div>
-//               <div class="comic-titulo-contenedor">
-//                   <h3 class="title is-5">${comic.titulo}</h3>
-//               </div>
+  ${comicCardElegida.creators.items.forEach(item => {
+    const guionistasNombres = document.querySelector(".guionistas-nombres")
+    
+    guionistasNombres.innerHTML += `
+    ${item.name}
+    `
+    })}
 
-//               <div class="personajes-contenedor">
+  }
+  })
 
-//               </div>
-//          </article>
-//     `;
-// }
+
+    ${comicCardElegida.characters.items.forEach(item => {
+     
+      todasLasCardsDePersonajes.innerHTML += `
+          <article class= "card-personaje-simple">
+              <div class="personaje-img-contenedor">              
+                  <img src="${item.resourceURI}.jpg" />        
+              </div>   
+              <div class="personaje-nombre-contenedor">
+                  <h3 class="personaje-nombre">${item.name}</h3>
+              </div>
+          </article> 
+      `
+       }
+      )}
+
+*/
 
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
@@ -85,17 +182,16 @@ const botonesPaginacion = document.querySelectorAll(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion)=> {
   btnPaginacion.onclick = () => {
-    if(btnPaginacion.classList.contains( 'pagina-primera' )){
-      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
-    }else if(btnPaginacion.classList.contains( 'pagina-anterior' )){
-      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
-    }else if(btnPaginacion.classList.contains( 'pagina-siguiente' )){
-      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
-    }else if(btnPaginacion.classList.contains( 'pagina-ultima' )){
-      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
-    }else {
-      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      if(btnPaginacion.classList.contains( 'pagina-primera' )){
+        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      }else if(btnPaginacion.classList.contains( 'pagina-anterior' )){
+        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      }else if(btnPaginacion.classList.contains( 'pagina-siguiente' )){
+        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      }else if(btnPaginacion.classList.contains( 'pagina-ultima' )){
+        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      }else {
+        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+      }
     }
-
-  }
 })

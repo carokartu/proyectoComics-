@@ -1,3 +1,25 @@
 %is-clickeable {
     cursor: pointer;
 }
+
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+    display:block;
+}
+%in-line {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+%in-stack {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+%in-grid {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}

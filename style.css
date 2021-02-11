@@ -1,5 +1,9 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 .card-comic-basica:hover {
   position: relative;
   transform: translateY(-10px);
@@ -20,10 +24,8 @@
   background-color: #0085ca;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.card-personaje-simple, .card-comic-basica {
+  cursor: pointer;
 }
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
@@ -31,20 +33,117 @@
   display: block;
 }
 
-.in-line {
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.in-stack {
+.busqueda-contenedor, .card-comic-basica {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.in-grid {
+.resultados-cards-contenedor, .personajes-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card-comic-detalle-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
+  max-width: 230px;
+  height: auto;
+}
+.card-comic-detalle-contenedor .comic-img-contenedor img, .card-comic-basica .comic-img-contenedor img {
+  width: 100%;
+}
+
+.card-comic-basica {
+  margin: 0 10px 40px;
+  box-shadow: 10px 5px 5px #bdb9b9;
+}
+.comic-titulo {
+  font-size: 14px;
+  margin: 5px;
+}
+
+.card-detalle-contenedor {
+  font-family: "Roboto", sans-serif;
+}
+
+.card-comic-detalle-contenedor {
+  display: flex;
+}
+.card-comic-detalle-contenedor .comic-img-contenedor {
+  margin-right: 20px;
+}
+
+.comic-contenido-contenedor {
+  margin-left: 20px;
+}
+.comic-contenido-contenedor h1, .comic-contenido-contenedor h3, .comic-contenido-contenedor p {
+  margin: 20px;
+}
+
+.personajes-contenedor h3, .personajes-contenedor h4 {
+  margin: 20px 0px;
+}
+
+.personaje-nombre-contenedor {
+  padding: 16px 24px 17px 20px;
+  background-color: #151515;
+  color: white;
+  transition: 0.2s;
+}
+.personaje-nombre-contenedor .personaje-nombre {
+  height: 79px;
+}
+
+.personaje-img-contenedor {
+  flex-grow: 1;
+  border-bottom: 4px solid #ed1d23;
+  overflow: hidden;
+}
+.personaje-img-contenedor img {
+  width: 100%;
+}
+
+.card-personaje-simple {
+  width: calc(100% / 6 - 2 * 10px);
+  position: relative;
+}
+.card-personaje-simple:hover img {
+  transform: scale(1.3);
+}
+.card-personaje-simple:hover .personaje-nombre-contenedor {
+  background-color: #ed1d23;
+}
+
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor, .card-comic-basica {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor, .personajes-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -76,17 +175,104 @@ header {
   width: 100%;
 }
 
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor, .card-comic-basica {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor, .personajes-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-contenedor {
+  background-color: black;
+  color: white;
+  padding: 40px 0px;
+}
+
+.footer-texto-contenedor {
+  font-family: "Roboto", sans-serif;
+}
+
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.paginacion-contenedor, .buscador-input-contenedor, .formulario, .logo-contenedor, .footer-texto-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busqueda-contenedor, .card-comic-basica {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor, .personajes-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .formulario {
+  font-family: "Roboto", sans-serif;
   justify-content: space-between;
   margin: 60px 40px 80px;
 }
 
-.formulario-contenedor {
-  justify-content: flex-start;
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
 }
 
-.card-comic-basica {
-  cursor: pointer;
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-comic-basica, .busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor, .personajes-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .card-comic-basica:hover {
@@ -95,21 +281,9 @@ header {
   transition: 0.2s;
 }
 
-.card-comic-basica {
-  margin: 0 10px 40px;
-  box-shadow: 10px 5px 5px #bdb9b9;
-}
-.comic-img-contenedor {
-  max-width: 230px;
-  height: auto;
-}
-.comic-img-contenedor img {
-  width: 100%;
-}
-
-.comic-titulo {
-  font-size: 14px;
-  margin: 5px;
+.seccion-principal {
+  font-family: "Roboto", sans-serif;
+  margin: 80px 10px 50px;
 }
 
 .card {
@@ -117,6 +291,34 @@ header {
   margin: 15px;
   border-radius: 5px;
   transition: 0.3s;
+}
+
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: block;
+}
+
+.paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-comic-basica, .busqueda-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.personajes-cards-contenedor, .resultados-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .paginacion-contenedor {

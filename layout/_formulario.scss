@@ -1,7 +1,16 @@
+@import "../abstracts/extends";
+@import "../base/tipography";
+
 .formulario {
+    @extend %in-line;
+    font-family: $tipografia-principal;
     justify-content: space-between;
     margin: 60px 40px 80px;
 }
-.formulario-contenedor {
-    justify-content: flex-start;
+
+.busqueda-contenedor {
+    @extend %in-stack;
+}
+.buscador-input-contenedor {
+    @extend %in-line;
 }

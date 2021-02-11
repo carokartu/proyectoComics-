@@ -1,4 +1,7 @@
+@import "../abstracts/extends";
+
 .paginacion-contenedor {
+    @extend %in-line;
     margin: 20px;
 }
 
