@@ -14,9 +14,11 @@ const contenedorDeCards = document.querySelector(
  *                CARDS
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
-mostrarTarjetasDeComics = () => {
+mostrarTarjetasDeComics = (url) => {
 
-  fetch('https://gateway.marvel.com/v1/public/comics?apikey=******************')
+  contenedorDeCards.innerHTML = ``;
+
+  fetch(`${url}`)
   .then((res) => {
     return res.json()
   })
@@ -48,7 +50,7 @@ mostrarTarjetasDeComics = () => {
   
 };
 
-mostrarTarjetasDeComics();
+mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
 
 // mostrarTarjetaElegida = (tarjeta) => {
 
@@ -69,3 +71,31 @@ mostrarTarjetasDeComics();
 //          </article>
 //     `;
 // }
+
+
+/***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
+ *                PAGINACION
+ **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
+
+const pagAnterior = document.querySelector(".pagina-anterior")
+const pagSiguiente = document.querySelector(".pagina-siguiente")
+const pagPrimera = document.querySelector(".pagina-primera")
+const pagUltima = document.querySelector(".pagina-ultima")
+const botonesPaginacion = document.querySelectorAll(".paginacion-btn")
+
+botonesPaginacion.forEach((btnPaginacion)=> {
+  btnPaginacion.onclick = () => {
+    if(btnPaginacion.classList.contains( 'pagina-primera' )){
+      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+    }else if(btnPaginacion.classList.contains( 'pagina-anterior' )){
+      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+    }else if(btnPaginacion.classList.contains( 'pagina-siguiente' )){
+      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+    }else if(btnPaginacion.classList.contains( 'pagina-ultima' )){
+      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+    }else {
+      mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+    }
+
+  }
+})

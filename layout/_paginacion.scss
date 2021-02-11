@@ -1,0 +1,27 @@
+.paginacion-contenedor {
+    margin: 20px;
+}
+
+.paginacion-btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    align-items: center;
+    font-size: 25px;
+    background-color: #151515;
+    color: #ffffff;
+    margin: 0 5px;
+    border: transparent;
+    transition: 0.2s;
+    &:disabled {
+        color: #757575;
+        border-color: #757575;
+    }
+    &:focus {
+        outline-color: #ed1d23;
+    }
+
+    &:not(:disabled):hover {
+        background-color: #ed1d23;
+      }
+    }      
