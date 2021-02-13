@@ -85,7 +85,7 @@ buscarPersonaje = (url) => {
     personaje = data;   
     console.log(personaje)
   })
-
+// falta resolver bug de como retornar esto luego del fetch
   return personaje
 }
 
