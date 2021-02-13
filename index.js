@@ -1,63 +1,105 @@
+const $ = (selector) => document.querySelector(selector)
+const $$ = (selector) => document.querySelectorAll(selector)
+
 let comics = [];
 
-const seccionPrincipal = document.querySelector(".seccion-principal");
-const resultadosTitulo = document.querySelector(
-  ".resultados-titulo-contenedor"
-);
-const cantidadDeResultados = document.querySelector(".cantidad-resultados")
 
-const contenedorDeCards = document.querySelector(
-  ".resultados-cards-contenedor"
-);
+const API_KEY = 'b1ee9360739b9c7554ec7be096d4d06f'
+const BASE_URL = 'https://gateway.marvel.com/v1/public'
 
-/***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
- *                CARDS
- **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
+let offset = 0
+let paginaActual = 0
 
-mostrarTarjetasDeComics = (url) => {
 
-  contenedorDeCards.innerHTML = ``;
+const seccionPrincipal = $(".seccion-principal");
+const resultadosTitulo = $(".resultados-titulo-contenedor");
+const cantidadDeResultados = $(".cantidad-resultados")
+const contenedorDeCards = $(".resultados-cards-contenedor");
 
-  fetch(`${url}`)
+/**  RUTAS */
+const getComics = '/comics'
+const getPersonajes = '/characters'
+
+
+
+const construirURL = (path, queryParams) => {
+  if(path && !queryParams) {
+      urlCompleta = `${BASE_URL}${path}?apikey=${API_KEY}`
+  }else if (queryParams) {
+      urlCompleta = `${BASE_URL}${path}?${queryParams}apikey=${API_KEY}`
+  }
+
+  return urlCompleta
+
+}
+
+// const fetchURL = async (url) => {
+//   console.log(url)
+//   const respuesta = await fetch(url)
+//   const data = await respuesta.json()
+//   console.log(data)
+//   return data
+// }
+
+const borrarContenidoHTML = (elemento) => {
+    elemento.innerHTML = ``;
+}
+
+const esconder = (elemento) => {
+  elemento.classList.add("is-hidden")
+}
+
+const mostrar = (elemento) => {
+  elemento.classList.remove("is-hidden")
+}
+
+crearTarjetasDeComics = (data) => {
+  comics = data.data.results
+  
+  comics.map((comic) => {
+    resultadosTitulo.classList.toggle("is-hidden");
+    cantidadDeResultados.textContent = ` ${data.data.count}`;
+
+    contenedorDeCards.innerHTML += `
+            <article class="card-comic-basica in-stack">
+                  <div class="comic-img-contenedor ">              
+                      <img src="${comic.thumbnail.path}.jpg" />        
+                  </div>   
+                  <div class="comic-titulo-contenedor">
+                      <h3 class="comic-titulo">${comic.title}</h3>
+                  </div>
+             </article>
+        `;
+  });
+}
+
+buscarPersonaje = (url) => {
+  const personaje = {};
+
+  fetch(`${url}?apikey=${API_KEY}`)
   .then((res) => {
     return res.json()
   })
   .then((data) => {
     console.log(data)
-    comics = data.data.results
-  
-    comics.map((comic) => {
-      resultadosTitulo.classList.toggle("is-hidden");
-      cantidadDeResultados.textContent = ` ${data.data.count}`;
-  
-      contenedorDeCards.innerHTML += `
-              <article class="card-comic-basica in-stack">
-                    <div class="comic-img-contenedor ">              
-                        <img src="${comic.thumbnail.path}.jpg" />        
-                    </div>   
-                    <div class="comic-titulo-contenedor">
-                        <h3 class="comic-titulo">${comic.title}</h3>
-                    </div>
-               </article>
-          `;
-    });
-  
+    personaje = data;   
+    console.log(personaje)
+  })
 
+  return personaje
+}
 
-    // ABRIR CARD DETALLE CON ONCLICK
+buscarImagenDePersonaje = (url) => {
+  console.log(url);
+  const personaje = buscarPersonaje(url);
+  imgPersonaje = `${personaje.data.results.thumbnail.path}.${personaje.data.results.thumbnail.extension}`;
+  console.log(imgPersonaje)
+  return imgPersonaje
+}
 
-    const todasLasCardsDeComics = document.querySelectorAll(".card-comic-basica")
+crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
-    todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
-      comicCard.onclick = () =>  {
-
-           const comicCardElegida = comics[cardIndice]
-
-           contenedorDeCards.innerHTML = ``;
-           resultadosTitulo.classList.toggle("is-hidden");
-           cantidadDeResultados.classList.toggle("is-hidden");
- 
-           seccionPrincipal.innerHTML = `
+  seccionPrincipal.innerHTML = `
  
              <div class= "card-detalle-contenedor">
                <div class= "card-comic-detalle-contenedor">
@@ -89,7 +131,7 @@ mostrarTarjetasDeComics = (url) => {
 
            // rellenar creadores
           const creadores = comicCardElegida.creators.items
-          const guionistasNombres = document.querySelector(".guionistas-nombres")
+          const guionistasNombres = $(".guionistas-nombres")
               
           creadores.forEach(creador=> {
               guionistasNombres.innerHTML += `
@@ -101,14 +143,14 @@ mostrarTarjetasDeComics = (url) => {
 
           // rellenar tarjetas de personajes
           const personajes = comicCardElegida.characters.items
-          const todasLasCardsDePersonajes = document.querySelector(".personajes-cards-contenedor")
+          const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
 
           personajes.forEach(personaje => {
      
             todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
                     <div class="personaje-img-contenedor">              
-                        <img src="${personaje.resourceURI}.jpg"/>        
+                        <img src="${buscarImagenDePersonaje(personaje.resourceURI)}.jpg"/>        
                     </div>   
                     <div class="personaje-nombre-contenedor">
                         <h3 class="personaje-nombre">${personaje.name}</h3>
@@ -118,10 +160,38 @@ mostrarTarjetasDeComics = (url) => {
           }) // cierra el foreach de personajes
 
 
+}
 
 
+listarComics = (url) => {
 
+  borrarContenidoHTML(contenedorDeCards);
+  mostrar(resultadosTitulo);
+  mostrar(cantidadDeResultados);
 
+  fetch(`${url}`)
+  .then((res) => {
+    return res.json()
+  })
+  .then((data) => {
+    console.log(data)
+    crearTarjetasDeComics(data)
+    
+    // ABRIR CARD DETALLE CON ONCLICK
+
+    const todasLasCardsDeComics = $$(".card-comic-basica")
+
+    todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
+      comicCard.onclick = () =>  {
+
+           const comicCardElegida = comics[cardIndice]
+
+           borrarContenidoHTML(contenedorDeCards);
+           esconder(resultadosTitulo);
+           esconder(cantidadDeResultados);
+ 
+           crearTarjetaDetalleDeComic(comicCardElegida);
+        
       }; // cierra el onclick
     }); // cierra el foreach
 
@@ -131,54 +201,18 @@ mostrarTarjetasDeComics = (url) => {
     seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
   })
   
-};
-
-mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
-
-  
-   /**  MOSTRAR CREADORES Y PERSONAJES
-
- 
-
-  ${comicCardElegida.creators.items.forEach(item => {
-    const guionistasNombres = document.querySelector(".guionistas-nombres")
-    
-    guionistasNombres.innerHTML += `
-    ${item.name}
-    `
-    })}
-
-  }
-  })
-
-
-    ${comicCardElegida.characters.items.forEach(item => {
-     
-      todasLasCardsDePersonajes.innerHTML += `
-          <article class= "card-personaje-simple">
-              <div class="personaje-img-contenedor">              
-                  <img src="${item.resourceURI}.jpg" />        
-              </div>   
-              <div class="personaje-nombre-contenedor">
-                  <h3 class="personaje-nombre">${item.name}</h3>
-              </div>
-          </article> 
-      `
-       }
-      )}
-
-*/
+ };
 
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *                PAGINACION
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
-const pagAnterior = document.querySelector(".pagina-anterior")
-const pagSiguiente = document.querySelector(".pagina-siguiente")
-const pagPrimera = document.querySelector(".pagina-primera")
-const pagUltima = document.querySelector(".pagina-ultima")
-const botonesPaginacion = document.querySelectorAll(".paginacion-btn")
+const pagAnterior = $(".pagina-anterior")
+const pagSiguiente = $(".pagina-siguiente")
+const pagPrimera = $(".pagina-primera")
+const pagUltima = $(".pagina-ultima")
+const botonesPaginacion = $$(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion)=> {
   btnPaginacion.onclick = () => {
@@ -195,3 +229,16 @@ botonesPaginacion.forEach((btnPaginacion)=> {
       }
     }
 })
+
+
+
+/***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
+ *                INICIALIZAR
+ **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
+
+const inicializar = () => {
+  const urlCompleta = construirURL(getComics)
+  listarComics(urlCompleta)
+}
+
+inicializar();
