@@ -17,20 +17,19 @@ const cantidadDeResultados = $(".cantidad-resultados")
 const contenedorDeCards = $(".resultados-cards-contenedor");
 
 /**  RUTAS */
-const getComics = '/comics'
-const getPersonajes = '/characters'
+const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
+const getPersonajes = `${BASE_URL}/charactersapikey=${API_KEY}`;
+let queryParams = `&offset=${offset}`;
 
 
 
-const construirURL = (path, queryParams) => {
-  if(path && !queryParams) {
-      urlCompleta = `${BASE_URL}${path}?apikey=${API_KEY}`
-  }else if (queryParams) {
-      urlCompleta = `${BASE_URL}${path}?${queryParams}apikey=${API_KEY}`
-  }
+const construirURL = (endpoint, queryParams) => {
+  return `${endpoint}${queryParams}`
+}
 
-  return urlCompleta
-
+const actualizarQueryParams = (query) =>{
+  queryParams += query;
+  return queryParams
 }
 
 // const fetchURL = async (url) => {
@@ -163,7 +162,7 @@ crearTarjetaDetalleDeComic = (comicCardElegida) => {
 }
 
 
-listarComics = (url) => {
+const listarComics = (url) => {
 
   borrarContenidoHTML(contenedorDeCards);
   mostrar(resultadosTitulo);
@@ -237,8 +236,30 @@ botonesPaginacion.forEach((btnPaginacion)=> {
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
 const inicializar = () => {
-  const urlCompleta = construirURL(getComics)
-  listarComics(urlCompleta)
+  
+  listarComics(construirURL(getComics, actualizarQueryParams("&orderBy=title")))
 }
 
+
 inicializar();
+
+/**Rutas comics
+ * ordenado a-z
+ construirURL(getComics, actualizarQueryParams("&orderBy=title"))
+ 
+ * ordenado z-a
+construirURL(getComics, actualizarQueryParams("&orderBy=-title"))
+
+ * de mas nuevo a mas viejo
+construirURL(getComics, actualizarQueryParams("&orderBy=modified"))
+
+ * de mas viejo a mas nuevo
+ construirURL(getComics, actualizarQueryParams("&orderBy=-modified"))
+
+ * Rutas personajes
+ * ordenado a-z
+ construirURL(getPersonajes, actualizarQueryParams("&orderBy=name"))
+
+ * ordenado z-a
+ * construirURL(getPersonajes, actualizarQueryParams("&orderBy=name"))
+ */
