@@ -10,7 +10,7 @@ const BASE_URL = 'https://gateway.marvel.com/v1/public'
 let offset = 0
 let paginaActual = 0
 
-
+const formulario = $(".formulario")
 const seccionPrincipal = $(".seccion-principal");
 const resultadosTitulo = $(".resultados-titulo-contenedor");
 const cantidadDeResultados = $(".cantidad-resultados")
@@ -19,7 +19,7 @@ const contenedorDeCards = $(".resultados-cards-contenedor");
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
 const getPersonajes = `${BASE_URL}/charactersapikey=${API_KEY}`;
-let queryParams = `&offset=${offset}`;
+
 
 
 
@@ -28,6 +28,7 @@ const construirURL = (endpoint, queryParams) => {
 }
 
 const actualizarQueryParams = (query) =>{
+  let queryParams = `&offset=${offset}`;
   queryParams += query;
   return queryParams
 }
@@ -52,12 +53,12 @@ const mostrar = (elemento) => {
   elemento.classList.remove("is-hidden")
 }
 
-crearTarjetasDeComics = (data) => {
+const crearTarjetasDeComics = (data) => {
   comics = data.data.results
   
   comics.map((comic) => {
     resultadosTitulo.classList.toggle("is-hidden");
-    cantidadDeResultados.textContent = ` ${data.data.count}`;
+    cantidadDeResultados.textContent = ` ${data.data.total}`;
 
     contenedorDeCards.innerHTML += `
             <article class="card-comic-basica in-stack">
@@ -72,7 +73,7 @@ crearTarjetasDeComics = (data) => {
   });
 }
 
-buscarPersonaje = (url) => {
+const buscarPersonaje = (url) => {
   const personaje = {};
 
   fetch(`${url}?apikey=${API_KEY}`)
@@ -88,7 +89,7 @@ buscarPersonaje = (url) => {
   return personaje
 }
 
-buscarImagenDePersonaje = (url) => {
+const buscarImagenDePersonaje = (url) => {
   console.log(url);
   const personaje = buscarPersonaje(url);
   imgPersonaje = `${personaje.data.results.thumbnail.path}.${personaje.data.results.thumbnail.extension}`;
@@ -96,7 +97,7 @@ buscarImagenDePersonaje = (url) => {
   return imgPersonaje
 }
 
-crearTarjetaDetalleDeComic = (comicCardElegida) => {
+const crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
   seccionPrincipal.innerHTML = `
  
@@ -162,7 +163,7 @@ crearTarjetaDetalleDeComic = (comicCardElegida) => {
 }
 
 
-const listarComics = (url) => {
+const listarCards = (url) => {
 
   borrarContenidoHTML(contenedorDeCards);
   mostrar(resultadosTitulo);
@@ -216,19 +217,68 @@ const botonesPaginacion = $$(".paginacion-btn")
 botonesPaginacion.forEach((btnPaginacion)=> {
   btnPaginacion.onclick = () => {
       if(btnPaginacion.classList.contains( 'pagina-primera' )){
-        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+        mostrarTarjetasDeComics(getComics);
       }else if(btnPaginacion.classList.contains( 'pagina-anterior' )){
-        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+        mostrarTarjetasDeComics(getComics);
       }else if(btnPaginacion.classList.contains( 'pagina-siguiente' )){
-        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+        mostrarTarjetasDeComics(getComics);
       }else if(btnPaginacion.classList.contains( 'pagina-ultima' )){
-        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+        mostrarTarjetasDeComics(getComics);
       }else {
-        mostrarTarjetasDeComics("https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f");
+        mostrarTarjetasDeComics(getComics);
       }
     }
 })
 
+formulario.onsubmit = (e) => {
+  console.log("enviaste el formulario")
+  e.preventDefault();
+  
+  const busqueda = $("#input-search");
+  const tipo = $("#tipo");
+  const orden = $("#orden")
+  let busquedaValue = ``;
+  
+ 
+  if(tipo.value === 'comics') {
+    console.log("buscaste comics")
+
+    if(busqueda.value.length) {
+       busquedaValue = `&titleStartsWith=${busqueda.value}`
+    }
+
+    if(orden.value === 'a-z') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)  
+    }
+    if(orden.value === 'z-a') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`) 
+    }
+    if(orden.value === 'mas-nuevos') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=modified`)   
+    }
+    if(orden.value === 'mas-viejos') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-modified`) 
+    }
+    listarCards(construirURL(getComics, queryParams))
+
+  }else {
+    console.log("buscaste personajes")
+
+    if(busqueda.value.length) {
+      queryParams = actualizarQueryParams(`&nameStartWith=${busqueda.value}`)
+    }
+
+    if(orden.value === 'a-z') {
+      console.log("pronto te mostraremos los personajes que buscaste")
+    }
+    if(orden.value === 'z-a') {
+      console.log("pronto te mostraremos los personajes que buscaste")
+    }
+
+  }
+
+  
+}
 
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
@@ -237,7 +287,7 @@ botonesPaginacion.forEach((btnPaginacion)=> {
 
 const inicializar = () => {
   
-  listarComics(construirURL(getComics, actualizarQueryParams("&orderBy=title")))
+  listarCards(construirURL(getComics, actualizarQueryParams("&orderBy=-modified")))
 }
 
 
