@@ -30,7 +30,7 @@
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
@@ -121,13 +121,37 @@
   background-color: #ed1d23;
 }
 
+.loader-contenedor {
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  width: 150px;
+  height: 150px;
+  border: 3px solid #f580c8;
+  border-radius: 100%;
+  border-top: 3px solid #252323;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .card-comic-basica, .card-personaje-simple {
   cursor: pointer;
 }
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
@@ -181,7 +205,7 @@ header {
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .buscador-input-contenedor, .formulario, .footer-texto-contenedor, .logo-contenedor {
@@ -219,7 +243,7 @@ header {
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .buscador-input-contenedor, .formulario, .logo-contenedor, .footer-texto-contenedor {
@@ -253,7 +277,7 @@ header {
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
@@ -299,7 +323,7 @@ header {
 
 /*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
 .is-hidden {
-  display: block;
+  display: none;
 }
 
 .paginacion-contenedor, .logo-contenedor, .footer-texto-contenedor, .formulario, .buscador-input-contenedor {
