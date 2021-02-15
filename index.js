@@ -15,6 +15,8 @@ const seccionPrincipal = $(".seccion-principal");
 const resultadosTitulo = $(".resultados-titulo-contenedor");
 const cantidadDeResultados = $(".cantidad-resultados")
 const contenedorDeCards = $(".resultados-cards-contenedor");
+const loader = $(".loader-contenedor");
+console.log(loader)
 
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
@@ -45,7 +47,7 @@ const borrarContenidoHTML = (elemento) => {
     elemento.innerHTML = ``;
 }
 
-const esconder = (elemento) => {
+const ocultar = (elemento) => {
   elemento.classList.add("is-hidden")
 }
 
@@ -54,6 +56,7 @@ const mostrar = (elemento) => {
 }
 
 const crearTarjetasDeComics = (data) => {
+  ocultar(loader)
   comics = data.data.results
   
   comics.map((comic) => {
@@ -187,8 +190,8 @@ const listarCards = (url) => {
            const comicCardElegida = comics[cardIndice]
 
            borrarContenidoHTML(contenedorDeCards);
-           esconder(resultadosTitulo);
-           esconder(cantidadDeResultados);
+           ocultar(resultadosTitulo);
+           ocultar(cantidadDeResultados);
  
            crearTarjetaDetalleDeComic(comicCardElegida);
         
@@ -234,6 +237,7 @@ formulario.onsubmit = (e) => {
   console.log("enviaste el formulario")
   e.preventDefault();
   
+  mostrar(loader);
   const busqueda = $("#input-search");
   const tipo = $("#tipo");
   const orden = $("#orden")
@@ -286,7 +290,7 @@ formulario.onsubmit = (e) => {
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
 const inicializar = () => {
-  
+  mostrar(loader)
   listarCards(construirURL(getComics, actualizarQueryParams("&orderBy=-modified")))
 }
 
