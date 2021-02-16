@@ -284,6 +284,19 @@ formulario.onsubmit = (e) => {
   
 }
 
+const botonInicio = $(".boton-inicio");
+const botonVolver =$(".boton-volver");
+
+botonInicio.onclick = () => {
+  console.log("clickeaste home")
+  inicializar();
+}
+
+botonVolver.onclick = () => {
+  console.log("clickeaste back")
+  mostrar(loader)
+  window.history.back();
+}
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *                INICIALIZAR
