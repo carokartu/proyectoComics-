@@ -2,15 +2,36 @@
 @import "../base/tipography";
 
 .formulario {
-    @extend %in-line;
+   
     font-family: $tipografia-principal;
     justify-content: space-between;
-    margin: 60px 40px 80px;
+   
 }
 
-.busqueda-contenedor {
-    @extend %in-stack;
+#input-search {
+    border: 0;
+    border-bottom: 2px solid #151515;
+    width: 100%;
+    padding: 5px 35px;
+    border-radius: 0;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.search-icon {
+    padding-right: 10px;
+}
+.formulario {
+    @extend %in-grid;
+    padding-right: 20px;
+}
+.filtros-contenedor {
+    width: 100%;
+    label {
+        padding-right: 10px;
+    }
 }
 .buscador-input-contenedor {
     @extend %in-line;
+ 
 }

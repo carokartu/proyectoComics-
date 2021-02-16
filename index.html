@@ -22,49 +22,55 @@
     </div>
 
     
+   
     <!--************ FORMULARIO ********************-->
+    <nav class= "navbar">
+        <h3 class= "busqueda-titulo">BÚSQUEDA</h3>
+        <div class="filtros-contenedor">
+            <form class= "formulario">  
 
-    <form class= "formulario">
-
-        <div class="busqueda-contenedor">
-            <div>
-                <h3 class= "busqueda-titulo">BÚSQUEDA</h3>
-            </div>
-            <label for="buscador-input" 
-                class="buscador-input-contenedor">
-                <input type="text"
-                    id="input-search"
-                    placeholder="Ingresá tu búsqueda"
-                    aria-label="Ingresá tu búsqueda">
-                </input>
-                <i class="fas fa-search search-icon"
-                aria-hidden="true">
-                </i>
-            </label>
+                <label for="buscador-input" 
+                    class="buscador-input-contenedor">
+                    <i class="fas fa-search search-icon"
+                    aria-hidden="true">
+                    </i>
+                    <input type="text"
+                        id="input-search"
+                        placeholder="Ingresá tu búsqueda"
+                        aria-label="Ingresá tu búsqueda">
+                    </input>       
+                </label>
+                   
+                <label>TIPO
+                    <select name="tipo" id="tipo">
+                        <option value="comics" selected>COMICS</option>
+                        <option value="personajes">PERSONAJES</option>
+                        </select>
+                </label>
+            
+                <label>ORDEN
+                    <select name="orden" id="orden">
+                        <option value="a-z" selected>A-Z</option>
+                        <option value="z-a">Z-A</option>
+                        <option value="mas-nuevos">MAS NUEVOS</option>
+                        <option value="mas-viejos">MAS VIEJOS</option>
+                        </select>
+                </label>
+            
+                <button type= "submit" class="boton-buscar">
+                    Buscar
+                </button>
+                   
+            </form>
+                   
+            <div class= "botones-contenedor">
+                <button class= "boton-inicio"><i class="fas fa-home"></i>Inicio</button>
+                <button class = "boton-volver"><i class="fas fa-undo"></i>Volver</button>
+            </div> 
         </div>
-        <div>
-            <label>TIPO
-                <select name="tipo" id="tipo">
-                    <option value="comics" selected>COMICS</option>
-                    <option value="personajes">PERSONAJES</option>
-                  </select>
-            </label>
-
-            <label>ORDEN
-                <select name="orden" id="orden">
-                    <option value="a-z" selected>A-Z</option>
-                    <option value="z-a">Z-A</option>
-                    <option value="mas-nuevos">MAS NUEVOS</option>
-                    <option value="mas-viejos">MAS VIEJOS</option>
-                  </select>
-            </label>
-
-            <button type= "submit" class="boton-buscar">
-             Buscar
-            </button>
-        </div>
-    </form>
-        
+                   
+    </nav>
+    
     
     <!--************ SECCION PRINCIPAL ********************-->
 
