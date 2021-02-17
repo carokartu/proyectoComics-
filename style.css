@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 .card-comic-basica:hover {
   position: relative;
   transform: translateY(-10px);
@@ -63,7 +64,7 @@ button i {
   align-items: center;
 }
 
-.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor {
+.resultados-cards-contenedor, .formulario, .comics-cards-contenedor, .personajes-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -96,11 +97,11 @@ button i {
   text-align: center;
 }
 
-.card-comic-detalle-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
+.card-personaje-detalle-contenedor .personaje-img-contenedor, .card-comic-detalle-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
   max-width: 230px;
   height: auto;
 }
-.card-comic-detalle-contenedor .comic-img-contenedor img, .card-comic-basica .comic-img-contenedor img {
+.card-personaje-detalle-contenedor .personaje-img-contenedor img, .card-comic-detalle-contenedor .comic-img-contenedor img, .card-comic-basica .comic-img-contenedor img {
   width: 100%;
 }
 
@@ -165,6 +166,61 @@ button i {
   background-color: #ed1d23;
 }
 
+.card-comic-basica, .card-personaje-simple {
+  cursor: pointer;
+}
+
+/*～●～●～●～●～  DISPLAY ●～●～●～●～●～●～*/
+.is-hidden {
+  display: none;
+}
+
+.filtros-contenedor, .paginacion-contenedor, .buscador-input-contenedor, .footer-texto-contenedor, .logo-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar, .card-comic-basica {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultados-cards-contenedor, .formulario, .comics-cards-contenedor, .personajes-cards-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card-personaje-detalle-contenedor {
+  display: flex;
+}
+.card-personaje-detalle-contenedor .personaje-img-contenedor {
+  margin-right: 20px;
+}
+
+.personaje-img-contenedor {
+  flex-grow: 1;
+  border-bottom: 4px solid #ed1d23;
+  overflow: hidden;
+}
+.personaje-img-contenedor img {
+  width: 100%;
+}
+
+.comic-contenido-contenedor {
+  margin-left: 20px;
+}
+.comic-contenido-contenedor h1, .comic-contenido-contenedor h3, .comic-contenido-contenedor p {
+  margin: 20px;
+}
+
+.comics-contenedor h3, .comics-contenedor h4 {
+  margin: 20px 0px;
+}
+
 .loader-contenedor {
   display: flex;
   justify-content: center;
@@ -211,7 +267,7 @@ button i {
   align-items: center;
 }
 
-.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor {
+.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor, .comics-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -265,7 +321,7 @@ header {
   align-items: center;
 }
 
-.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor {
+.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor, .comics-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -303,7 +359,7 @@ header {
   align-items: center;
 }
 
-.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor {
+.resultados-cards-contenedor, .formulario, .personajes-cards-contenedor, .comics-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -361,7 +417,7 @@ header {
   align-items: center;
 }
 
-.resultados-cards-contenedor, .personajes-cards-contenedor, .formulario {
+.resultados-cards-contenedor, .personajes-cards-contenedor, .comics-cards-contenedor, .formulario {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -407,7 +463,7 @@ header {
   align-items: center;
 }
 
-.personajes-cards-contenedor, .formulario, .resultados-cards-contenedor {
+.personajes-cards-contenedor, .comics-cards-contenedor, .formulario, .resultados-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -462,7 +518,7 @@ header {
   align-items: center;
 }
 
-.personajes-cards-contenedor, .formulario, .resultados-cards-contenedor {
+.personajes-cards-contenedor, .comics-cards-contenedor, .formulario, .resultados-cards-contenedor {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -333,3 +333,33 @@ construirURL(getComics, actualizarQueryParams("&orderBy=modified"))
  * ordenado z-a
  * construirURL(getPersonajes, actualizarQueryParams("&orderBy=name"))
  */
+
+
+//  MAQUETADO DETALLE PERSONAJE
+
+// <div class="card-detalle-contenedor">
+// <div class="card-personaje-detalle-contenedor">
+//     <div class="personaje-img-contenedor">
+//         <img class="personaje-img" src="http://i.annihil.us/u/prod/marvel/i/mg/6/00/6026d944c0e3a.jpg">
+//     </div>
+//     <div class="comic-contenido-contenedor">
+//         <h1 class="comic-contenido-titulo">Slick</h2>
+//             <h3>Publicado:</h3>
+//             <p>22/22/2222</p>
+//             <h3>Guionistas:</h3>
+//             <p class="guionistas-nombres">Coco cocote</p>
+
+//             <h3>Descripción: </h3>
+//             <p>Hola pepo, soy la descripción</p>
+//     </div>
+// </div>
+// <div class="comics-contenedor">
+//     <h3>Comics</h3>
+//     <h4><span class="cantidad-comics">3</span> ENCONTRADOS
+//     </h4>
+//     <div class="comics-cards-contenedor">
+
+//     </div>
+// </div>
+// </div>
+

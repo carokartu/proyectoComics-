@@ -1,0 +1,40 @@
+@import "../abstracts/extends";
+@import "../base/tipography";
+
+
+.card-personaje-detalle-contenedor {
+    display:flex;
+    .personaje-img-contenedor {
+        @extend %img-contenedor;
+        margin-right: $margen-pequeño;
+    }
+}
+
+.personaje-img-contenedor {
+    flex-grow: 1;
+    border-bottom: 4px solid #ed1d23;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+}
+
+.comic-contenido-contenedor {
+    margin-left: $margen-pequeño;
+
+    h1, h3, p {
+        margin: $margen-pequeño;
+    }
+   
+}
+
+.comics-contenedor {
+    h3, h4 {
+       margin: $margen-pequeño 0px; 
+    }
+    
+}
+
+.comics-cards-contenedor{
+    @extend %in-grid;
+}
