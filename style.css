@@ -69,6 +69,33 @@ button i {
   align-items: center;
 }
 
+.resultados-cards-contenedor {
+  margin: 100px;
+}
+
+.card-comic-positionator {
+  margin: 20px;
+}
+.card-comic-positionator .card-comic-basica {
+  height: 350px;
+  width: 210px;
+}
+.card-comic-positionator .card-comic-basica .comic-img-contenedor {
+  display: flex;
+  justify-content: center;
+}
+.card-comic-positionator .card-comic-basica .comic-img-contenedor img {
+  height: 350px;
+  width: 210px;
+}
+.card-comic-positionator .comic-titulo-contenedor {
+  width: 210px;
+}
+.card-comic-positionator .comic-titulo-contenedor h3 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
 .card-comic-detalle-contenedor .comic-img-contenedor, .card-comic-basica .comic-img-contenedor {
   max-width: 230px;
   height: auto;

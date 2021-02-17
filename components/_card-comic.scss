@@ -2,6 +2,40 @@
 @import "../base/tipography";
 
 
+$altura-de-card:350px;
+$ancho-de-card:210px;
+
+.resultados-cards-contenedor {
+    margin: 100px;
+  }
+  .card-comic-positionator {
+    margin: 20px;
+  
+    .card-comic-basica {
+      height: $altura-de-card;
+      width: $ancho-de-card;
+  
+      .comic-img-contenedor {
+        display: flex;
+        justify-content: center;
+        img {
+            height: $altura-de-card;
+            width: $ancho-de-card;
+        }
+      }
+    }
+    .comic-titulo-contenedor {
+    //   margin-top: 0;
+    //   margin-bottom: 20px;
+      width: $ancho-de-card;
+h3{
+font-family: $tipografia-principal;
+text-align: center;
+}
+
+    }
+  }
+
 %img-contenedor {
     max-width: 230px;
     height: auto;

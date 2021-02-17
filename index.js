@@ -29,7 +29,7 @@ const construirURL = (endpoint, queryParams) => {
   return `${endpoint}${queryParams}`
 }
 
-const actualizarQueryParams = (query) =>{
+const actualizarQueryParams = (query) => {
   let queryParams = `&offset=${offset}`;
   queryParams += query;
   return queryParams
@@ -44,7 +44,7 @@ const actualizarQueryParams = (query) =>{
 // }
 
 const borrarContenidoHTML = (elemento) => {
-    elemento.innerHTML = ``;
+  elemento.innerHTML = ``;
 }
 
 const ocultar = (elemento) => {
@@ -58,20 +58,23 @@ const mostrar = (elemento) => {
 const crearTarjetasDeComics = (data) => {
   ocultar(loader)
   comics = data.data.results
-  
+
   comics.map((comic) => {
     resultadosTitulo.classList.toggle("is-hidden");
     cantidadDeResultados.textContent = ` ${data.data.total}`;
 
     contenedorDeCards.innerHTML += `
-            <article class="card-comic-basica in-stack">
-                  <div class="comic-img-contenedor ">              
-                      <img src="${comic.thumbnail.path}.jpg" />        
-                  </div>   
-                  <div class="comic-titulo-contenedor">
-                      <h3 class="comic-titulo">${comic.title}</h3>
-                  </div>
-             </article>
+    <article class="card-comic-positionator">        
+      <div class="card-comic-basica in-stack">
+            <div class="comic-img-contenedor ">              
+              <img src="${comic.thumbnail.path}.jpg" />        
+            </div>   
+      </div>  
+      <div class="comic-titulo-contenedor">
+         <h3 class="comic-titulo">${comic.title}</h3>
+      </div>
+   </article>
+             
         `;
   });
 }
@@ -80,15 +83,15 @@ const buscarPersonaje = (url) => {
   const personaje = {};
 
   fetch(`${url}?apikey=${API_KEY}`)
-  .then((res) => {
-    return res.json()
-  })
-  .then((data) => {
-    console.log(data)
-    personaje = data;   
-    console.log(personaje)
-  })
-// falta resolver bug de como retornar esto luego del fetch
+    .then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      console.log(data)
+      personaje = data;
+      console.log(personaje)
+    })
+  // falta resolver bug de como retornar esto luego del fetch
   return personaje
 }
 
@@ -132,25 +135,25 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
            `;
 
 
-           // rellenar creadores
-          const creadores = comicCardElegida.creators.items
-          const guionistasNombres = $(".guionistas-nombres")
-              
-          creadores.forEach(creador=> {
-              guionistasNombres.innerHTML += `
+  // rellenar creadores
+  const creadores = comicCardElegida.creators.items
+  const guionistasNombres = $(".guionistas-nombres")
+
+  creadores.forEach(creador => {
+    guionistasNombres.innerHTML += `
               ${creador.name} - 
               `
-          }) //cierra foreach de creadores
+  }) //cierra foreach de creadores
 
-           
 
-          // rellenar tarjetas de personajes
-          const personajes = comicCardElegida.characters.items
-          const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
 
-          personajes.forEach(personaje => {
-     
-            todasLasCardsDePersonajes.innerHTML += `
+  // rellenar tarjetas de personajes
+  const personajes = comicCardElegida.characters.items
+  const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
+
+  personajes.forEach(personaje => {
+
+    todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
                     <div class="personaje-img-contenedor">              
                         <img src="${buscarImagenDePersonaje(personaje.resourceURI)}.jpg"/>        
@@ -159,8 +162,8 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
                         <h3 class="personaje-nombre">${personaje.name}</h3>
                     </div>
                 </article> 
-            `            
-          }) // cierra el foreach de personajes
+            `
+  }) // cierra el foreach de personajes
 
 
 }
@@ -173,38 +176,38 @@ const listarCards = (url) => {
   mostrar(cantidadDeResultados);
 
   fetch(`${url}`)
-  .then((res) => {
-    return res.json()
-  })
-  .then((data) => {
-    console.log(data)
-    crearTarjetasDeComics(data)
-    
-    // ABRIR CARD DETALLE CON ONCLICK
+    .then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      console.log(data)
+      crearTarjetasDeComics(data)
 
-    const todasLasCardsDeComics = $$(".card-comic-basica")
+      // ABRIR CARD DETALLE CON ONCLICK
 
-    todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
-      comicCard.onclick = () =>  {
+      const todasLasCardsDeComics = $$(".card-comic-basica")
 
-           const comicCardElegida = comics[cardIndice]
+      todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
+        comicCard.onclick = () => {
 
-           borrarContenidoHTML(contenedorDeCards);
-           ocultar(resultadosTitulo);
-           ocultar(cantidadDeResultados);
- 
-           crearTarjetaDetalleDeComic(comicCardElegida);
-        
-      }; // cierra el onclick
-    }); // cierra el foreach
+          const comicCardElegida = comics[cardIndice]
 
- }) // cierra el then
-  .catch((err) => {
-    console.log(err)
-    seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
-  })
-  
- };
+          borrarContenidoHTML(contenedorDeCards);
+          ocultar(resultadosTitulo);
+          ocultar(cantidadDeResultados);
+
+          crearTarjetaDetalleDeComic(comicCardElegida);
+
+        }; // cierra el onclick
+      }); // cierra el foreach
+
+    }) // cierra el then
+    .catch((err) => {
+      console.log(err)
+      seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
+    })
+
+};
 
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
@@ -217,75 +220,75 @@ const pagPrimera = $(".pagina-primera")
 const pagUltima = $(".pagina-ultima")
 const botonesPaginacion = $$(".paginacion-btn")
 
-botonesPaginacion.forEach((btnPaginacion)=> {
+botonesPaginacion.forEach((btnPaginacion) => {
   btnPaginacion.onclick = () => {
-      if(btnPaginacion.classList.contains( 'pagina-primera' )){
-        mostrarTarjetasDeComics(getComics);
-      }else if(btnPaginacion.classList.contains( 'pagina-anterior' )){
-        mostrarTarjetasDeComics(getComics);
-      }else if(btnPaginacion.classList.contains( 'pagina-siguiente' )){
-        mostrarTarjetasDeComics(getComics);
-      }else if(btnPaginacion.classList.contains( 'pagina-ultima' )){
-        mostrarTarjetasDeComics(getComics);
-      }else {
-        mostrarTarjetasDeComics(getComics);
-      }
+    if (btnPaginacion.classList.contains('pagina-primera')) {
+      mostrarTarjetasDeComics(getComics);
+    } else if (btnPaginacion.classList.contains('pagina-anterior')) {
+      mostrarTarjetasDeComics(getComics);
+    } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
+      mostrarTarjetasDeComics(getComics);
+    } else if (btnPaginacion.classList.contains('pagina-ultima')) {
+      mostrarTarjetasDeComics(getComics);
+    } else {
+      mostrarTarjetasDeComics(getComics);
     }
+  }
 })
 
 formulario.onsubmit = (e) => {
   console.log("enviaste el formulario")
   e.preventDefault();
-  
+
   mostrar(loader);
   const busqueda = $("#input-search");
   const tipo = $("#tipo");
   const orden = $("#orden")
   let busquedaValue = ``;
-  
- 
-  if(tipo.value === 'comics') {
+
+
+  if (tipo.value === 'comics') {
     console.log("buscaste comics")
 
-    if(busqueda.value.length) {
-       busquedaValue = `&titleStartsWith=${busqueda.value}`
+    if (busqueda.value.length) {
+      busquedaValue = `&titleStartsWith=${busqueda.value}`
     }
 
-    if(orden.value === 'a-z') {
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)  
+    if (orden.value === 'a-z') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)
     }
-    if(orden.value === 'z-a') {
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`) 
+    if (orden.value === 'z-a') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`)
     }
-    if(orden.value === 'mas-nuevos') {
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=modified`)   
+    if (orden.value === 'mas-nuevos') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=modified`)
     }
-    if(orden.value === 'mas-viejos') {
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-modified`) 
+    if (orden.value === 'mas-viejos') {
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-modified`)
     }
     listarCards(construirURL(getComics, queryParams))
 
-  }else {
+  } else {
     console.log("buscaste personajes")
 
-    if(busqueda.value.length) {
+    if (busqueda.value.length) {
       queryParams = actualizarQueryParams(`&nameStartWith=${busqueda.value}`)
     }
 
-    if(orden.value === 'a-z') {
+    if (orden.value === 'a-z') {
       console.log("pronto te mostraremos los personajes que buscaste")
     }
-    if(orden.value === 'z-a') {
+    if (orden.value === 'z-a') {
       console.log("pronto te mostraremos los personajes que buscaste")
     }
 
   }
 
-  
+
 }
 
 const botonInicio = $(".boton-inicio");
-const botonVolver =$(".boton-volver");
+const botonVolver = $(".boton-volver");
 
 botonInicio.onclick = () => {
   console.log("clickeaste home")
@@ -313,7 +316,7 @@ inicializar();
 /**Rutas comics
  * ordenado a-z
  construirURL(getComics, actualizarQueryParams("&orderBy=title"))
- 
+
  * ordenado z-a
 construirURL(getComics, actualizarQueryParams("&orderBy=-title"))
 
