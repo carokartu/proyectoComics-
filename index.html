@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
 
     <title>PROYECTO COMICS ADA</title>
 </head>
+
 <body>
 
     <!--************ HEADER Y HERO ********************-->
 
     <header class="logo-contenedor in-line">
-        <h1 class="logo">ADA COMICS</h1> 
+        <h1 class="logo">ADA COMICS</h1>
     </header>
 
-    <div class="hero"> 
-        <img src="images\hero.jpg"/>  
+    <div class="hero">
+        <img src="images\hero.jpg" />
     </div>
 
-    
-   
-    <!--************ FORMULARIO ********************-->
-    <nav class= "navbar">
-        <h3 class= "busqueda-titulo">BÚSQUEDA</h3>
-        <div class="filtros-contenedor">
-            <form class= "formulario">  
 
-                <label for="buscador-input" 
-                    class="buscador-input-contenedor">
-                    <i class="fas fa-search search-icon"
-                    aria-hidden="true">
+
+    <!--************ FORMULARIO ********************-->
+    <nav class="navbar">
+        <h3 class="busqueda-titulo">BÚSQUEDA</h3>
+        <div class="filtros-contenedor">
+            <form class="formulario">
+
+                <label for="buscador-input" class="buscador-input-contenedor">
+                    <i class="fas fa-search search-icon" aria-hidden="true">
                     </i>
-                    <input type="text"
-                        id="input-search"
-                        placeholder="Ingresá tu búsqueda"
+                    <input type="text" id="input-search" placeholder="Ingresá tu búsqueda"
                         aria-label="Ingresá tu búsqueda">
-                    </input>       
+                    </input>
                 </label>
-                   
+
                 <label>TIPO
                     <select name="tipo" id="tipo">
                         <option value="comics" selected>COMICS</option>
                         <option value="personajes">PERSONAJES</option>
-                        </select>
+                    </select>
                 </label>
-            
+
                 <label>ORDEN
                     <select name="orden" id="orden">
                         <option value="a-z" selected>A-Z</option>
                         <option value="z-a">Z-A</option>
                         <option value="mas-nuevos">MAS NUEVOS</option>
                         <option value="mas-viejos">MAS VIEJOS</option>
-                        </select>
+                    </select>
                 </label>
-            
-                <button type= "submit" class="boton-buscar">
+
+                <button type="submit" class="boton-buscar">
                     Buscar
                 </button>
-                   
+
             </form>
-                   
-            <div class= "botones-contenedor">
-                <button class= "boton-inicio"><i class="fas fa-home"></i>Inicio</button>
-                <button class = "boton-volver"><i class="fas fa-undo"></i>Volver</button>
-            </div> 
+
+            <div class="botones-contenedor">
+                <button class="boton-inicio"><i class="fas fa-home"></i>Inicio</button>
+                <button class="boton-volver"><i class="fas fa-undo"></i>Volver</button>
+            </div>
         </div>
-                   
+
     </nav>
-    
-    
+
+
     <!--************ SECCION PRINCIPAL ********************-->
-    <div>Hola soy un div de prueba</div>
     <section class="seccion-principal">
-        <div class= "resultados-titulo-contenedor">
+        <div class="resultados-titulo-contenedor">
             <h1>Resultados</h1>
             <h4><span class="cantidad-resultados">0</span> RESULTADOS</h4>
         </div>
@@ -86,38 +85,39 @@
 
     <!--************ LOADER ********************-->
 
-    <div class= "loader-contenedor is-hidden">
-         <div class="loader "></div>
+    <div class="loader-contenedor is-hidden">
+        <div class="loader "></div>
     </div>
-   
+
 
     <!--************ PAGINACION ********************-->
 
     <div class="paginacion-contenedor">
         <button type="button" class="pagina-primera paginacion-btn" aria-label="Página previa" disabled="">
-          <i class="fas fa-angle-double-left" aria-hidden="true"></i>
+            <i class="fas fa-angle-double-left" aria-hidden="true"></i>
         </button>
         <button type="button" class="pagina-anterior paginacion-btn" aria-label="Página Anterior" disabled="">
-          <i class="fas fa-angle-left" aria-hidden="true"></i>
+            <i class="fas fa-angle-left" aria-hidden="true"></i>
         </button>
         <button type="button" class="pagina-siguiente paginacion-btn" aria-label="Siguiente ´Página">
-          <i class="fas fa-angle-right" aria-hidden="true"></i>
+            <i class="fas fa-angle-right" aria-hidden="true"></i>
         </button>
         <button type="button" class="pagina-ultima paginacion-btn" aria-label="Última página">
-          <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+            <i class="fas fa-angle-double-right" aria-hidden="true"></i>
         </button>
-      </div>
+    </div>
 
     <!--************ FOOTER ********************-->
 
-    <footer class= "footer-contenedor">
-        <div class= "footer-texto-contenedor">
+    <footer class="footer-contenedor">
+        <div class="footer-texto-contenedor">
             <p>Hecho con ❤️ por Ada</p>
         </div>
     </footer>
 
 
-
+    <!-- <img src="http://i.annihil.us/u/prod/marvel/i/mg/6/00/6026d944c0e3a.jpg">
+ -->
 
     <script src="index.js"></script>
 
