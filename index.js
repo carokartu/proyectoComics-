@@ -9,6 +9,7 @@ const BASE_URL = 'https://gateway.marvel.com/v1/public'
 
 let offset = 0
 let paginaActual = 0
+let ultimaBusqueda = ""
 
 const formulario = $(".formulario")
 const seccionPrincipal = $(".seccion-principal");
@@ -16,7 +17,10 @@ const resultadosTitulo = $(".resultados-titulo-contenedor");
 const cantidadDeResultados = $(".cantidad-resultados")
 const contenedorDeCards = $(".resultados-cards-contenedor");
 const loader = $(".loader-contenedor");
-console.log(loader)
+
+
+
+
 
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
@@ -24,24 +28,20 @@ const getPersonajes = `${BASE_URL}/charactersapikey=${API_KEY}`;
 
 
 
+/**  FUNCIONES GENERALES  */
 
+// construirURL: junta dos strings, una ruta base mas sus parametros de busqueda y los devuelve
 const construirURL = (endpoint, queryParams) => {
   return `${endpoint}${queryParams}`
 }
 
+//actualizarQueryparamas: recibe un parametro de busqueda y lo une al parametro offset que va siempre
 const actualizarQueryParams = (query) => {
   let queryParams = `&offset=${offset}`;
   queryParams += query;
   return queryParams
 }
 
-// const fetchURL = async (url) => {
-//   console.log(url)
-//   const respuesta = await fetch(url)
-//   const data = await respuesta.json()
-//   console.log(data)
-//   return data
-// }
 
 const borrarContenidoHTML = (elemento) => {
   elemento.innerHTML = ``;
@@ -54,6 +54,12 @@ const ocultar = (elemento) => {
 const mostrar = (elemento) => {
   elemento.classList.remove("is-hidden")
 }
+
+
+
+/**  FUNCIONES PRINCIPALES  */ 
+
+//crearTarjetasDeComics : dibuja las cards de comisc en HTML a partir de la data que recibe como parametro
 
 const crearTarjetasDeComics = (data) => {
   ocultar(loader)
@@ -103,9 +109,12 @@ const buscarImagenDePersonaje = (url) => {
   return imgPersonaje
 }
 
+
+// crearTarjetaDEtalleDelComic: dibuja en HTML la tarejta detalle de comic a partir de la data de la tarjeta Clickeada
+//                               que recibe como parametro.
 const crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
-  seccionPrincipal.innerHTML = `
+  contenedorDeCards.innerHTML = `
  
              <div class= "card-detalle-contenedor">
                <div class= "card-comic-detalle-contenedor">
@@ -146,8 +155,7 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
   }) //cierra foreach de creadores
 
 
-
-  // rellenar tarjetas de personajes
+  // rellenar tarjetas de personajes dentro de la card comic detalle
   const personajes = comicCardElegida.characters.items
   const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
 
@@ -168,12 +176,27 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
 }
 
+const crearTarjetasDePersonajes = (data) => {
+
+
+  // LOGICA DE CARO
+ // guiate por el codigo de la linea 65 a 86
+
+
+  
+
+}
+
+// listarCards: rellena el  <div class="resultados-cards-contenedor"></div> en el HTML con 
+//              tarjetas basicas de comics o personajes
 
 const listarCards = (url) => {
 
   borrarContenidoHTML(contenedorDeCards);
   mostrar(resultadosTitulo);
   mostrar(cantidadDeResultados);
+  const tipo = $("#tipo").value;
+  ultimaBusqueda = url;
 
   fetch(`${url}`)
     .then((res) => {
@@ -181,9 +204,13 @@ const listarCards = (url) => {
     })
     .then((data) => {
       console.log(data)
-      crearTarjetasDeComics(data)
 
-      // ABRIR CARD DETALLE CON ONCLICK
+      if(tipo === "comics") {
+        crearTarjetasDeComics(data)
+      }else crearTarjetasDePersonajes(data)
+
+      
+      // ABRIR CARD DETALLE DE COMIC CON ONCLICK
 
       const todasLasCardsDeComics = $$(".card-comic-basica")
 
@@ -200,6 +227,17 @@ const listarCards = (url) => {
 
         }; // cierra el onclick
       }); // cierra el foreach
+
+
+       // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
+       // LOGICA DE ANGIE
+       // guiate por el codigo de la linea 214 a 225
+       // crea una funcion aparte que se llame parecido a crearTarjetaDetalleDePersonaje() donde metas el maquetado
+
+
+
+
+
 
     }) // cierra el then
     .catch((err) => {
@@ -236,42 +274,48 @@ botonesPaginacion.forEach((btnPaginacion) => {
   }
 })
 
+
+/***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
+ *     FORMULARIO - BUSQUEDA POR PARAMETROS
+ **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
+
 formulario.onsubmit = (e) => {
   console.log("enviaste el formulario")
   e.preventDefault();
-
   mostrar(loader);
-  const busqueda = $("#input-search");
-  const tipo = $("#tipo");
-  const orden = $("#orden")
+  const busqueda = $("#input-search").value;
+  const tipo = $("#tipo").value;
+  const orden = $("#orden").value;
   let busquedaValue = ``;
 
-
-  if (tipo.value === 'comics') {
+  if (tipo === 'comics') {
     console.log("buscaste comics")
+    console.log(tipo)
+    console.log(orden)
+    console.log(busqueda)
 
-    if (busqueda.value.length) {
-      busquedaValue = `&titleStartsWith=${busqueda.value}`
+    if (busqueda.length) {
+      busquedaValue = `&titleStartsWith=${busqueda}`
     }
-
-    if (orden.value === 'a-z') {
+    if (orden === 'a-z') {
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)
     }
-    if (orden.value === 'z-a') {
+    if (orden === 'z-a') {
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`)
     }
-    if (orden.value === 'mas-nuevos') {
+    if (orden === 'mas-nuevos') {
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=modified`)
     }
-    if (orden.value === 'mas-viejos') {
+    if (orden === 'mas-viejos') {
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-modified`)
     }
+
     listarCards(construirURL(getComics, queryParams))
 
   } else {
     console.log("buscaste personajes")
 
-    if (busqueda.value.length) {
+    if (busqueda.length) {
       queryParams = actualizarQueryParams(`&nameStartWith=${busqueda.value}`)
     }
 
@@ -282,10 +326,16 @@ formulario.onsubmit = (e) => {
       console.log("pronto te mostraremos los personajes que buscaste")
     }
 
+    listarCards(construirURL(getPersonajes, queryParams))
   }
 
 
 }
+
+
+/***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
+ *    BOTONES HOME Y BACK
+ **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
 
 const botonInicio = $(".boton-inicio");
 const botonVolver = $(".boton-volver");
@@ -297,9 +347,14 @@ botonInicio.onclick = () => {
 
 botonVolver.onclick = () => {
   console.log("clickeaste back")
+  console.log(ultimaBusqueda)
   mostrar(loader)
-  window.history.back();
+  if(ultimaBusqueda.length){
+    listarCards(ultimaBusqueda);
+  }else inicializar()
+  
 }
+
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *                INICIALIZAR
@@ -307,11 +362,15 @@ botonVolver.onclick = () => {
 
 const inicializar = () => {
   mostrar(loader)
-  listarCards(construirURL(getComics, actualizarQueryParams("&orderBy=-modified")))
+  listarCards(construirURL(getComics, actualizarQueryParams("&orderBy=title")))
 }
 
 
 inicializar();
+
+
+
+
 
 /**Rutas comics
  * ordenado a-z
