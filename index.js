@@ -1,8 +1,8 @@
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
-let comics = [];
-
+let comics = [];  // guarda la data de comics traida de la api
+let personajes = []; // guarda la data de personajes traida de la api
 
 const API_KEY = 'b1ee9360739b9c7554ec7be096d4d06f'
 const BASE_URL = 'https://gateway.marvel.com/v1/public'
@@ -20,11 +20,9 @@ const loader = $(".loader-contenedor");
 
 
 
-
-
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
-const getPersonajes = `${BASE_URL}/charactersapikey=${API_KEY}`;
+const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
 
 
 
