@@ -24,7 +24,7 @@ const loader = $(".loader-contenedor");
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
 const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
 
-
+console.log(getPersonajes)
 
 /**  FUNCIONES GENERALES  */
 
@@ -174,9 +174,47 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
 }
 
-const crearTarjetasDePersonajes = (data) => {
+const crearTarjetasDePersonajes = (personajeCardElegida) => {
 
-
+    contenedorDeCards.innerHTML =` 
+    <div class="card-detalle-contenedor">
+      <div class="card-personaje-detalle-contenedor">
+          <div class="personaje-img-contenedor">
+              <img class="personaje-img" src="${personajeCardElegida.thumbnail.path}.jpg">
+          </div>
+          <div class="comic-contenido-contenedor">
+              <h1 class="comic-contenido-titulo">${personajeCardElegida.title}</h2>
+                  <h3>Publicado:</h3>
+                  <p>${Date(personajeCardElegida.dates[1].date)}</p>
+                  <h3>Guionistas:</h3>
+                  <p class="guionistas-nombres">Coco cocote</p>
+      
+                  <h3>Descripción: </h3>
+                  <p>${personajeCardElegida.title}</p>
+          </div>
+      </div>
+        <div class="comics-contenedor">
+            <h3>Comics</h3>
+            <h4><span class="cantidad-comics">${personajeCardElegida.comics.available}</span> ENCONTRADOS
+            </h4>
+            <div class="comics-cards-contenedor">
+        
+        </div>
+      </div>
+    </div>
+    
+     `
+     
+    // rellenar creadores
+    let creadores = personajeCardElegida.creators.items
+    let guionistasNombres = $(".guionistas-nombres")
+  
+    creadores.forEach(creador => {
+      guionistasNombres.innerHTML += `
+                ${creador.name} - 
+                `
+    }) //cierra foreach de creadores
+  
   // LOGICA DE CARO
  // guiate por el codigo de la linea 65 a 86
 
@@ -228,6 +266,26 @@ const listarCards = (url) => {
 
 
        // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
+
+      //  const todasLasCardsDeComics = $$(".card-comic-basica")
+let personajesPrueba =document.querySelectorAll(".personaje-prueba")
+
+       personajesPrueba.forEach((personajePrueba, cardIndice) => {
+        personajePrueba.onclick = () => {
+ 
+           const personajeCardElegida = characters[cardIndice]
+ 
+           borrarContenidoHTML(contenedorDeCards);
+           ocultar(resultadosTitulo);
+           ocultar(cantidadDeResultados);
+ 
+           crearTarjetaDetalleDePersonaje(personajeCardElegida);
+ 
+         }; // cierra el onclick
+       }); // cierra el foreach
+ 
+ 
+
        // LOGICA DE ANGIE
        // guiate por el codigo de la linea 214 a 225
        // crea una funcion aparte que se llame parecido a crearTarjetaDetalleDePersonaje() donde metas el maquetado
