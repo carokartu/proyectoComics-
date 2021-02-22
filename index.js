@@ -10,6 +10,7 @@ const BASE_URL = 'https://gateway.marvel.com/v1/public'
 let offset = 0
 let paginaActual = 0
 let ultimaBusqueda = ""
+let comicsPorPagina = 20
 
 const formulario = $(".formulario")
 const seccionPrincipal = $(".seccion-principal");
@@ -55,7 +56,7 @@ const mostrar = (elemento) => {
 
 
 
-/**  FUNCIONES PRINCIPALES  */ 
+/**  FUNCIONES PRINCIPALES  */
 
 //crearTarjetasDeComics : dibuja las cards de comisc en HTML a partir de la data que recibe como parametro
 
@@ -84,7 +85,7 @@ const crearTarjetasDeComics = (data) => {
 }
 
 const buscarPersonaje = (url) => {
-  const personaje = {};
+  let personaje = {};
 
   fetch(`${url}?apikey=${API_KEY}`)
     .then((res) => {
@@ -178,10 +179,10 @@ const crearTarjetasDePersonajes = (data) => {
 
 
   // LOGICA DE CARO
- // guiate por el codigo de la linea 65 a 86
+  // guiate por el codigo de la linea 65 a 86
 
 
-  
+
 
 }
 
@@ -203,14 +204,14 @@ const listarCards = (url) => {
     .then((data) => {
       console.log(data)
 
-      if(tipo === "comics") {
+      if (tipo === "comics") {
         crearTarjetasDeComics(data)
-      }else crearTarjetasDePersonajes(data)
+      } else crearTarjetasDePersonajes(data)
 
-      
+
       // ABRIR CARD DETALLE DE COMIC CON ONCLICK
 
-      const todasLasCardsDeComics = $$(".card-comic-basica")
+        const todasLasCardsDeComics = $$(".card-comic-basica")
 
       todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
         comicCard.onclick = () => {
@@ -226,11 +227,11 @@ const listarCards = (url) => {
         }; // cierra el onclick
       }); // cierra el foreach
 
-
-       // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
-       // LOGICA DE ANGIE
-       // guiate por el codigo de la linea 214 a 225
-       // crea una funcion aparte que se llame parecido a crearTarjetaDetalleDePersonaje() donde metas el maquetado
+  
+      // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
+      // LOGICA DE ANGIE
+      // guiate por el codigo de la linea 214 a 225
+      // crea una funcion aparte que se llame parecido a crearTarjetaDetalleDePersonaje() donde metas el maquetado
 
 
 
@@ -259,11 +260,13 @@ const botonesPaginacion = $$(".paginacion-btn")
 botonesPaginacion.forEach((btnPaginacion) => {
   btnPaginacion.onclick = () => {
     if (btnPaginacion.classList.contains('pagina-primera')) {
-      mostrarTarjetasDeComics(getComics);
+      buscarComics(BASE_URL, API_KEY, paginaActual)
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       mostrarTarjetasDeComics(getComics);
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
-      mostrarTarjetasDeComics(getComics);
+      paginaActual++
+      console.log("pagina actual", paginaActual)
+      buscarComics(paginaActual)
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
       mostrarTarjetasDeComics(getComics);
     } else {
@@ -272,7 +275,42 @@ botonesPaginacion.forEach((btnPaginacion) => {
   }
 })
 
+let buscarComics = (paginaActual) => {
+  console.log("buscando comics...")
+  fetch(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
+    .then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      comics = data.data.results
+      contenedorDeCards.innerHTML = ` `
+      comics.map((comic) => {
+      
+        contenedorDeCards.innerHTML += `
+      <article class="card-comic-positionator">        
+        <div class="card-comic-basica in-stack">
+              <div class="comic-img-contenedor ">              
+                <img src="${comic.thumbnail.path}.jpg" />        
+              </div>   
+        </div>  
+        <div class="comic-titulo-contenedor">
+           <h3 class="comic-titulo">${comic.title}</h3>
+        </div>
+     </article>
+               
+          `;
 
+
+        console.log("llegué al inner")
+
+   
+      })
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
+      
+    })
+
+  }
+  
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *     FORMULARIO - BUSQUEDA POR PARAMETROS
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
@@ -347,10 +385,10 @@ botonVolver.onclick = () => {
   console.log("clickeaste back")
   console.log(ultimaBusqueda)
   mostrar(loader)
-  if(ultimaBusqueda.length){
+  if (ultimaBusqueda.length) {
     listarCards(ultimaBusqueda);
-  }else inicializar()
-  
+  } else inicializar()
+
 }
 
 
