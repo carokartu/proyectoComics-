@@ -258,26 +258,43 @@ const pagUltima = $(".pagina-ultima")
 const botonesPaginacion = $$(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion) => {
+ 
+
   btnPaginacion.onclick = () => {
+    let btnAnterior = document.querySelector(".pagina-anterior")
+    
     if (btnPaginacion.classList.contains('pagina-primera')) {
-      buscarComics(BASE_URL, API_KEY, paginaActual)
+      btnAnterior.disabled = true;
+      
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
-      mostrarTarjetasDeComics(getComics);
+      paginaActual--
+      console.log("pagina actual", paginaActual)
+      buscarComics(paginaActual)
+      
+     if (paginaActual== 0){
+      btnAnterior.disabled = true; 
+    }
+      else{
+      btnAnterior.disabled = false;
+     }
+
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
       console.log("pagina actual", paginaActual)
       buscarComics(paginaActual)
+      btnAnterior.disabled = false;
+
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
-      mostrarTarjetasDeComics(getComics);
+
     } else {
-      mostrarTarjetasDeComics(getComics);
+buscarComics(paginaActual)
     }
   }
 })
 
 let buscarComics = (paginaActual) => {
   console.log("buscando comics...")
-  fetch(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
+  fetch(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
     .then((res) => {
       return res.json()
     })
@@ -300,10 +317,6 @@ let buscarComics = (paginaActual) => {
                
           `;
 
-
-        console.log("llegué al inner")
-
-   
       })
       listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
       
