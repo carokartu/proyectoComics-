@@ -24,6 +24,7 @@ const loader = $(".loader-contenedor");
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
 const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
+let linkCambioDePaginaComic= `https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`
 
 
 
@@ -208,7 +209,7 @@ const listarCards = (url) => {
         crearTarjetasDeComics(data)
       } else crearTarjetasDePersonajes(data)
 
-
+console.log("Página actual dentro del listarCards" + paginaActual)
       // ABRIR CARD DETALLE DE COMIC CON ONCLICK
 
         const todasLasCardsDeComics = $$(".card-comic-basica")
@@ -226,17 +227,6 @@ const listarCards = (url) => {
 
         }; // cierra el onclick
       }); // cierra el foreach
-
-  
-      // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
-      // LOGICA DE ANGIE
-      // guiate por el codigo de la linea 214 a 225
-      // crea una funcion aparte que se llame parecido a crearTarjetaDetalleDePersonaje() donde metas el maquetado
-
-
-
-
-
 
     }) // cierra el then
     .catch((err) => {
@@ -262,35 +252,40 @@ botonesPaginacion.forEach((btnPaginacion) => {
 
   btnPaginacion.onclick = () => {
     let btnAnterior = document.querySelector(".pagina-anterior")
-   let linkCambioDePagina= `https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`
+    let btnPrimera = document.querySelector(".pagina-primera")
+
     if (btnPaginacion.classList.contains('pagina-primera')) {
       btnAnterior.disabled = true;
+      btnPrimera.disabled = true;
       paginaActual=0
-      listarCards(linkCambioDePagina)
+      listarCards(linkCambioDePaginaComic)
 
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       paginaActual--
       console.log("pagina actual", paginaActual)
-      listarCards(linkCambioDePagina)
+      listarCards(linkCambioDePaginaComic)
       
-     if (paginaActual== 0){
+     if (paginaActual=== 0){
       btnAnterior.disabled = true; 
+      btnPrimera.disabled = true;
     }
       else{
       btnAnterior.disabled = false;
-     }
+      btnPrimera.disabled = false;
+    }
 
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
       console.log("pagina actual", paginaActual)
-      listarCards(linkCambioDePagina)
+      listarCards(linkCambioDePaginaComic)
       btnAnterior.disabled = false;
+      btnPrimera.disabled = false;
 
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
-      listarCards(linkCambioDePagina)
+      listarCards(linkCambioDePaginaComic)
 
     } else {
-      listarCards(linkCambioDePagina)
+      listarCards(linkCambioDePaginaComic)
 
     }
   }
