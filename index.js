@@ -195,7 +195,7 @@ const listarCards = (url) => {
   mostrar(resultadosTitulo);
   mostrar(cantidadDeResultados);
   const tipo = $("#tipo").value;
-  ultimaBusqueda = url;
+  // ultimaBusqueda = url;
 
   fetch(`${url}`)
     .then((res) => {
@@ -262,14 +262,16 @@ botonesPaginacion.forEach((btnPaginacion) => {
 
   btnPaginacion.onclick = () => {
     let btnAnterior = document.querySelector(".pagina-anterior")
-    
+   let linkCambioDePagina= `https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`
     if (btnPaginacion.classList.contains('pagina-primera')) {
       btnAnterior.disabled = true;
-      
+      paginaActual=0
+      listarCards(linkCambioDePagina)
+
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       paginaActual--
       console.log("pagina actual", paginaActual)
-      buscarComics(paginaActual)
+      listarCards(linkCambioDePagina)
       
      if (paginaActual== 0){
       btnAnterior.disabled = true; 
@@ -281,49 +283,19 @@ botonesPaginacion.forEach((btnPaginacion) => {
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
       console.log("pagina actual", paginaActual)
-      buscarComics(paginaActual)
+      listarCards(linkCambioDePagina)
       btnAnterior.disabled = false;
 
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
+      listarCards(linkCambioDePagina)
 
     } else {
-buscarComics(paginaActual)
+      listarCards(linkCambioDePagina)
+
     }
   }
 })
 
-let buscarComics = (paginaActual) => {
-  console.log("buscando comics...")
-  fetch(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
-    .then((res) => {
-      return res.json()
-    })
-    .then((data) => {
-      comics = data.data.results
-      contenedorDeCards.innerHTML = ` `
-      comics.map((comic) => {
-      
-        contenedorDeCards.innerHTML += `
-      <article class="card-comic-positionator">        
-        <div class="card-comic-basica in-stack">
-              <div class="comic-img-contenedor ">              
-                <img src="${comic.thumbnail.path}.jpg" />        
-              </div>   
-        </div>  
-        <div class="comic-titulo-contenedor">
-           <h3 class="comic-titulo">${comic.title}</h3>
-        </div>
-     </article>
-               
-          `;
-
-      })
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
-      
-    })
-
-  }
-  
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *     FORMULARIO - BUSQUEDA POR PARAMETROS
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
