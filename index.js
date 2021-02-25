@@ -323,12 +323,13 @@ formulario.onsubmit = (e) => {
   const tipo = $("#tipo").value;
   const orden = $("#orden").value;
   let busquedaValue = ``;
+  console.log (orden.value)
   if (tipo === 'comics') {
     console.log("buscaste comics")
     console.log(tipo)
     console.log(orden)
     console.log(busqueda)
-    console.log (orden.value)
+    
     if (busqueda.length) {
       busquedaValue = `&titleStartsWith=${busqueda}`
     }
@@ -349,16 +350,16 @@ formulario.onsubmit = (e) => {
 
   } else {
     console.log("buscaste personajes")
-
+    
     if (busqueda.length) {
       busquedaValue = `&titleStartsWith=${busqueda}`
     }
 
-    if (orden.value === 'a-z') {
+    if (orden === 'a-z') {
       console.log("pronto te mostraremos los personajes que buscaste")
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)
     }
-    if (orden.value === 'z-a') {
+    if (orden === 'z-a') {
       console.log("pronto te mostraremos los personajes que buscaste")
       queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`)
     }
