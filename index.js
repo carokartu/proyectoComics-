@@ -28,6 +28,7 @@ const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
 
 /**  FUNCIONES GENERALES  */
 
+
 // construirURL: junta dos strings, una ruta base mas sus parametros de busqueda y los devuelve
 const construirURL = (endpoint, queryParams) => {
   return `${endpoint}${queryParams}`
@@ -322,13 +323,12 @@ formulario.onsubmit = (e) => {
   const tipo = $("#tipo").value;
   const orden = $("#orden").value;
   let busquedaValue = ``;
-
   if (tipo === 'comics') {
     console.log("buscaste comics")
     console.log(tipo)
     console.log(orden)
     console.log(busqueda)
-
+    console.log (orden.value)
     if (busqueda.length) {
       busquedaValue = `&titleStartsWith=${busqueda}`
     }
