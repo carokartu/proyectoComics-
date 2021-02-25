@@ -20,7 +20,6 @@ const contenedorDeCards = $(".resultados-cards-contenedor");
 const loader = $(".loader-contenedor");
 
 
-
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
 const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
@@ -352,14 +351,16 @@ formulario.onsubmit = (e) => {
     console.log("buscaste personajes")
 
     if (busqueda.length) {
-      queryParams = actualizarQueryParams(`&nameStartWith=${busqueda.value}`)
+      busquedaValue = `&titleStartsWith=${busqueda}`
     }
 
     if (orden.value === 'a-z') {
       console.log("pronto te mostraremos los personajes que buscaste")
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)
     }
     if (orden.value === 'z-a') {
       console.log("pronto te mostraremos los personajes que buscaste")
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`)
     }
 
     listarCards(construirURL(getPersonajes, queryParams))
