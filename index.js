@@ -355,10 +355,10 @@ formulario.onsubmit = (e) => {
       queryParams = actualizarQueryParams(`&nameStartWith=${busqueda.value}`)
     }
 
-    if (orden.value === 'a-z') {
+    if (orden === 'a-z') {
       console.log("pronto te mostraremos los personajes que buscaste")
     }
-    if (orden.value === 'z-a') {
+    if (orden === 'z-a') {
       console.log("pronto te mostraremos los personajes que buscaste")
     }
 
