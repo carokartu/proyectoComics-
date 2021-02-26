@@ -84,26 +84,29 @@ const crearTarjetasDeComics = (data) => {
   });
 }
 
-const buscarPersonaje = (url) => {
-  let personaje = {};
 
+
+const buscarPersonaje = (url) => {
+  let personajeUnico = {};
   fetch(`${url}?apikey=${API_KEY}`)
     .then((res) => {
       return res.json()
     })
     .then((data) => {
-      console.log(data)
-      personaje = data;
-      console.log(personaje)
+      return personajeUnico += data.data.results;
+      // falta resolver bug de como retornar esto luego del fetch
     })
-  // falta resolver bug de como retornar esto luego del fetch
-  return personaje
 }
 
+
+
+
+
 const buscarImagenDePersonaje = (url) => {
-  console.log(url);
   const personaje = buscarPersonaje(url);
-  imgPersonaje = `${personaje.data.results.thumbnail.path}.${personaje.data.results.thumbnail.extension}`;
+  console.log(personaje)
+  imgPersonaje = `${personaje.data.results.thumbnail.path}`
+  // ${personaje.data.results.thumbnail.extension}`;
   console.log(imgPersonaje)
   return imgPersonaje
 }
@@ -157,7 +160,6 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
   // rellenar tarjetas de personajes dentro de la card comic detalle
   const personajes = comicCardElegida.characters.items
   const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
-
   personajes.forEach(personaje => {
 
     todasLasCardsDePersonajes.innerHTML += `
@@ -177,7 +179,23 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
 
 const crearTarjetasDePersonajes = (data) => {
 
-
+  const todasLasCardsDePersonajes = $(".resultados-cards-contenedor")
+  personajes = data.data.results
+  console.log(personajes)
+  personajes.forEach(personaje => {
+    todasLasCardsDePersonajes.innerHTML += `
+                <article class= "card-personaje-simple">
+                    <div class="personaje-img-contenedor">              
+                    
+                    </div>   
+                    <div class="personaje-nombre-contenedor">
+                        <h3 class="personaje-nombre">${personaje.name}</h3>
+                    </div>
+                </article> 
+            `
+  }) // cierra el foreach de personajes
+  {/* <img src="${buscarImagenDePersonaje(personaje.resourceURI)}.jpg"/> */ }
+  // <img src="${buscarImagenDePersonaje(personaje.resourceURI)}">
   // LOGICA DE CARO
   // guiate por el codigo de la linea 65 a 86
 
@@ -206,12 +224,14 @@ const listarCards = (url) => {
 
       if (tipo === "comics") {
         crearTarjetasDeComics(data)
-      } else crearTarjetasDePersonajes(data)
-
+      }
+      else {
+        crearTarjetasDePersonajes(data)
+      }
 
       // ABRIR CARD DETALLE DE COMIC CON ONCLICK
 
-        const todasLasCardsDeComics = $$(".card-comic-basica")
+      const todasLasCardsDeComics = $$(".card-comic-basica")
 
       todasLasCardsDeComics.forEach((comicCard, cardIndice) => {
         comicCard.onclick = () => {
@@ -227,7 +247,7 @@ const listarCards = (url) => {
         }; // cierra el onclick
       }); // cierra el foreach
 
-  
+
       // ABRIR CARD DETALLE DE PERSONAJE CON ONCLICK
       // LOGICA DE ANGIE
       // guiate por el codigo de la linea 214 a 225
@@ -239,10 +259,10 @@ const listarCards = (url) => {
 
 
     }) // cierra el then
-    .catch((err) => {
-      console.log(err)
-      seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
-    })
+  .catch((err) => {
+    console.log(err)
+    seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
+  })
 
 };
 
@@ -285,7 +305,7 @@ let buscarComics = (paginaActual) => {
       comics = data.data.results
       contenedorDeCards.innerHTML = ` `
       comics.map((comic) => {
-      
+
         contenedorDeCards.innerHTML += `
       <article class="card-comic-positionator">        
         <div class="card-comic-basica in-stack">
@@ -303,14 +323,14 @@ let buscarComics = (paginaActual) => {
 
         console.log("llegué al inner")
 
-   
+
       })
       listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}`)
-      
+
     })
 
-  }
-  
+}
+
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
  *     FORMULARIO - BUSQUEDA POR PARAMETROS
  **☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*/
@@ -323,13 +343,13 @@ formulario.onsubmit = (e) => {
   const tipo = $("#tipo").value;
   const orden = $("#orden").value;
   let busquedaValue = ``;
-  console.log (orden.value)
+
   if (tipo === 'comics') {
     console.log("buscaste comics")
     console.log(tipo)
     console.log(orden)
     console.log(busqueda)
-    
+
     if (busqueda.length) {
       busquedaValue = `&titleStartsWith=${busqueda}`
     }
@@ -350,18 +370,18 @@ formulario.onsubmit = (e) => {
 
   } else {
     console.log("buscaste personajes")
-    
+
     if (busqueda.length) {
-      busquedaValue = `&titleStartsWith=${busqueda}`
+      busquedaValue = `&nameStartsWith=${busqueda}`
     }
 
     if (orden === 'a-z') {
       console.log("pronto te mostraremos los personajes que buscaste")
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=title`)
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=name`)
     }
     if (orden === 'z-a') {
       console.log("pronto te mostraremos los personajes que buscaste")
-      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=-title`)
+      queryParams = actualizarQueryParams(`${busquedaValue}&orderBy=name`)
     }
 
     listarCards(construirURL(getPersonajes, queryParams))
