@@ -24,7 +24,7 @@ const loader = $(".loader-contenedor");
 /**  RUTAS */
 const getComics = `${BASE_URL}/comics?apikey=${API_KEY}`;
 const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
-let linkCambioDePaginaComic= `https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`
+
 
 
 
@@ -258,12 +258,12 @@ botonesPaginacion.forEach((btnPaginacion) => {
       btnAnterior.disabled = true;
       btnPrimera.disabled = true;
       paginaActual=0
-      listarCards(linkCambioDePaginaComic)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       paginaActual--
       console.log("pagina actual", paginaActual)
-      listarCards(linkCambioDePaginaComic)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
       
      if (paginaActual=== 0){
       btnAnterior.disabled = true; 
@@ -277,15 +277,15 @@ botonesPaginacion.forEach((btnPaginacion) => {
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
       console.log("pagina actual", paginaActual)
-      listarCards(linkCambioDePaginaComic)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
       btnAnterior.disabled = false;
       btnPrimera.disabled = false;
 
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
-      listarCards(linkCambioDePaginaComic)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     } else {
-      listarCards(linkCambioDePaginaComic)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     }
   }
