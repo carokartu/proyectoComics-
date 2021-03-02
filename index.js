@@ -138,7 +138,7 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
                    <h4><span class="cantidad-personajes">${comicCardElegida.characters.available}</span> ENCONTRADOS</h4>
                    <div class= "personajes-cards-contenedor">
                    
-                   </div>               
+                   </div>             
                </div>
            </div>      
            `;
