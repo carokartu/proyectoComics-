@@ -186,7 +186,7 @@ const crearTarjetasDePersonajes = (data) => {
     todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
                     <div class="personaje-img-contenedor">              
-                    
+                    <img src="${personaje.thumbnail.path}.${personaje.thumbnail.extension}" />
                     </div>   
                     <div class="personaje-nombre-contenedor">
                         <h3 class="personaje-nombre">${personaje.name}</h3>
