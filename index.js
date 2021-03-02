@@ -26,6 +26,7 @@ const getPersonajes = `${BASE_URL}/characters?apikey=${API_KEY}`;
 
 
 
+
 /**  FUNCIONES GENERALES  */
 
 
@@ -140,7 +141,7 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
                    <h4><span class="cantidad-personajes">${comicCardElegida.characters.available}</span> ENCONTRADOS</h4>
                    <div class= "personajes-cards-contenedor">
                    
-                   </div>               
+                   </div>             
                </div>
            </div>      
            `;
@@ -213,7 +214,7 @@ const listarCards = (url) => {
   mostrar(resultadosTitulo);
   mostrar(cantidadDeResultados);
   const tipo = $("#tipo").value;
-  ultimaBusqueda = url;
+  // ultimaBusqueda = url;
 
   fetch(`${url}`)
     .then((res) => {
@@ -278,19 +279,45 @@ const pagUltima = $(".pagina-ultima")
 const botonesPaginacion = $$(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion) => {
+ 
+
   btnPaginacion.onclick = () => {
+    let btnAnterior = document.querySelector(".pagina-anterior")
+    let btnPrimera = document.querySelector(".pagina-primera")
+
     if (btnPaginacion.classList.contains('pagina-primera')) {
-      buscarComics(BASE_URL, API_KEY, paginaActual)
+      btnAnterior.disabled = true;
+      btnPrimera.disabled = true;
+      paginaActual=0
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
-      mostrarTarjetasDeComics(getComics);
+      paginaActual--
+      console.log("pagina actual", paginaActual)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      
+     if (paginaActual=== 0){
+      btnAnterior.disabled = true; 
+      btnPrimera.disabled = true;
+    }
+      else{
+      btnAnterior.disabled = false;
+      btnPrimera.disabled = false;
+    }
+
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
       console.log("pagina actual", paginaActual)
-      buscarComics(paginaActual)
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      btnAnterior.disabled = false;
+      btnPrimera.disabled = false;
+
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
-      mostrarTarjetasDeComics(getComics);
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+
     } else {
-      mostrarTarjetasDeComics(getComics);
+      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+
     }
   }
 })
