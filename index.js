@@ -94,22 +94,13 @@ const buscarPersonaje = (url) => {
       return res.json()
     })
     .then((data) => {
-      return personajeUnico += data.data.results;
+      personajeUnico += data.data.results
+      console.log(personajeUnico)
       // falta resolver bug de como retornar esto luego del fetch
+      imgPersonaje = `${personajeUnico.results.characters.thumbnail.path} ${personajeUnico.data.results.thumbnail.extension}`;
+      console.log(imgPersonaje)
+      return personajeUnico
     })
-}
-
-
-
-
-
-const buscarImagenDePersonaje = (url) => {
-  const personaje = buscarPersonaje(url);
-  console.log(personaje)
-  imgPersonaje = `${personaje.data.results.thumbnail.path}`
-  // ${personaje.data.results.thumbnail.extension}`;
-  console.log(imgPersonaje)
-  return imgPersonaje
 }
 
 
@@ -161,12 +152,15 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
   // rellenar tarjetas de personajes dentro de la card comic detalle
   const personajes = comicCardElegida.characters.items
   const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
+  const personajesEncontradosComic = $(".cantidad-personajes")
+  personajesEncontradosComic.textContent = ` ${comicCardElegida.characters.available}`;
+
   personajes.forEach(personaje => {
 
     todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
                     <div class="personaje-img-contenedor">              
-                        <img src="${buscarImagenDePersonaje(personaje.resourceURI)}.jpg"/>        
+                        <img src="${comicCardElegida.characters.collectionURI}.jpg"/>        
                     </div>   
                     <div class="personaje-nombre-contenedor">
                         <h3 class="personaje-nombre">${personaje.name}</h3>
@@ -182,7 +176,7 @@ const crearTarjetasDePersonajes = (data) => {
 
   const todasLasCardsDePersonajes = $(".resultados-cards-contenedor")
   personajes = data.data.results
-  console.log(personajes)
+  ocultar(loader)
   personajes.forEach(personaje => {
     todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
@@ -195,8 +189,6 @@ const crearTarjetasDePersonajes = (data) => {
                 </article> 
             `
   }) // cierra el foreach de personajes
-  {/* <img src="${buscarImagenDePersonaje(personaje.resourceURI)}.jpg"/> */ }
-  // <img src="${buscarImagenDePersonaje(personaje.resourceURI)}">
   // LOGICA DE CARO
   // guiate por el codigo de la linea 65 a 86
 
@@ -260,10 +252,10 @@ const listarCards = (url) => {
 
 
     }) // cierra el then
-  .catch((err) => {
-    console.log(err)
-    seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
-  })
+    .catch((err) => {
+      console.log(err)
+      seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
+    })
 
 };
 
@@ -279,7 +271,7 @@ const pagUltima = $(".pagina-ultima")
 const botonesPaginacion = $$(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion) => {
- 
+
 
   btnPaginacion.onclick = () => {
     let btnAnterior = document.querySelector(".pagina-anterior")
@@ -288,22 +280,22 @@ botonesPaginacion.forEach((btnPaginacion) => {
     if (btnPaginacion.classList.contains('pagina-primera')) {
       btnAnterior.disabled = true;
       btnPrimera.disabled = true;
-      paginaActual=0
+      paginaActual = 0
       listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       paginaActual--
       console.log("pagina actual", paginaActual)
       listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
-      
-     if (paginaActual=== 0){
-      btnAnterior.disabled = true; 
-      btnPrimera.disabled = true;
-    }
-      else{
-      btnAnterior.disabled = false;
-      btnPrimera.disabled = false;
-    }
+
+      if (paginaActual === 0) {
+        btnAnterior.disabled = true;
+        btnPrimera.disabled = true;
+      }
+      else {
+        btnAnterior.disabled = false;
+        btnPrimera.disabled = false;
+      }
 
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
