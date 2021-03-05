@@ -97,7 +97,7 @@ const buscarPersonaje = (url) => {
       personajeUnico += data.data.results
       console.log(personajeUnico)
       // falta resolver bug de como retornar esto luego del fetch
-      imgPersonaje = `${personajeUnico.results.characters.thumbnail.path} ${personajeUnico.data.results.thumbnail.extension}`;
+      imgPersonaje = `${personajeUnico.results.thumbnail.path} ${personajeUnico.data.results.thumbnail.extension}`;
       console.log(imgPersonaje)
       return personajeUnico
     })
@@ -148,7 +148,6 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
               `
   }) //cierra foreach de creadores
 
-
   // rellenar tarjetas de personajes dentro de la card comic detalle
   const personajes = comicCardElegida.characters.items
   const todasLasCardsDePersonajes = $(".personajes-cards-contenedor")
@@ -160,16 +159,14 @@ const crearTarjetaDetalleDeComic = (comicCardElegida) => {
     todasLasCardsDePersonajes.innerHTML += `
                 <article class= "card-personaje-simple">
                     <div class="personaje-img-contenedor">              
-                        <img src="${comicCardElegida.characters.collectionURI}.jpg"/>        
+                        <img src="${listarCards(comicCardElegida.characters.collectionURI + API_KEY)}.jpg"/>        
                     </div>   
                     <div class="personaje-nombre-contenedor">
                         <h3 class="personaje-nombre">${personaje.name}</h3>
                     </div>
                 </article> 
-            `
+                          `
   }) // cierra el foreach de personajes
-
-
 }
 
 const crearTarjetasDePersonajes = (data) => {
