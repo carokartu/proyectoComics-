@@ -11,7 +11,7 @@ let offset = 0
 let paginaActual = 0
 let ultimaBusqueda = ""
 let comicsPorPagina = 20
-
+let actual
 const formulario = $(".formulario")
 const seccionPrincipal = $(".seccion-principal");
 const resultadosTitulo = $(".resultados-titulo-contenedor");
@@ -260,10 +260,10 @@ const listarCards = (url) => {
 
 
     }) // cierra el then
-  .catch((err) => {
-    console.log(err)
-    seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
-  })
+    .catch((err) => {
+      console.log(err)
+      seccionPrincipal.textContent = "No pudimos encontrar tu busqueda"
+    })
 
 };
 
@@ -279,7 +279,7 @@ const pagUltima = $(".pagina-ultima")
 const botonesPaginacion = $$(".paginacion-btn")
 
 botonesPaginacion.forEach((btnPaginacion) => {
- 
+
 
   btnPaginacion.onclick = () => {
     let btnAnterior = document.querySelector(".pagina-anterior")
@@ -288,35 +288,47 @@ botonesPaginacion.forEach((btnPaginacion) => {
     if (btnPaginacion.classList.contains('pagina-primera')) {
       btnAnterior.disabled = true;
       btnPrimera.disabled = true;
-      paginaActual=0
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      paginaActual = 0
+      if (actual === "estamos en comics") {
+        listarCards(`${getComics}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      }
+      else {
+        listarCards(`${getPersonajes}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      }
 
     } else if (btnPaginacion.classList.contains('pagina-anterior')) {
       paginaActual--
       console.log("pagina actual", paginaActual)
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
-      
-     if (paginaActual=== 0){
-      btnAnterior.disabled = true; 
-      btnPrimera.disabled = true;
-    }
-      else{
-      btnAnterior.disabled = false;
-      btnPrimera.disabled = false;
-    }
+      listarCards(`${getComics}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+
+      if (paginaActual === 0) {
+        btnAnterior.disabled = true;
+        btnPrimera.disabled = true;
+      }
+      else {
+        btnAnterior.disabled = false;
+        btnPrimera.disabled = false;
+      }
 
     } else if (btnPaginacion.classList.contains('pagina-siguiente')) {
       paginaActual++
+      console.log("valor de actual" + actual)
       console.log("pagina actual", paginaActual)
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      if (actual === "estamos en comics") {
+        listarCards(`${getComics}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      }
+      else {
+        listarCards(`${getPersonajes}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      }
+
       btnAnterior.disabled = false;
       btnPrimera.disabled = false;
-
+      //   listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
     } else if (btnPaginacion.classList.contains('pagina-ultima')) {
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      listarCards(`${getComics}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     } else {
-      listarCards(`https://gateway.marvel.com/v1/public/comics?apikey=b1ee9360739b9c7554ec7be096d4d06f&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
+      listarCards(`${getComics}&offset=${paginaActual * comicsPorPagina}&orderBy=title`)
 
     }
   }
@@ -397,7 +409,7 @@ formulario.onsubmit = (e) => {
 
   } else {
     console.log("buscaste personajes")
-
+    actual = "estamos en personajes"
     if (busqueda.length) {
       busquedaValue = `&nameStartsWith=${busqueda}`
     }
@@ -412,10 +424,12 @@ formulario.onsubmit = (e) => {
     }
 
     listarCards(construirURL(getPersonajes, queryParams))
+
   }
 
-
 }
+
+
 
 
 /***☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*――*☆*
@@ -447,6 +461,7 @@ botonVolver.onclick = () => {
 
 const inicializar = () => {
   mostrar(loader)
+  actual = "estamos en comics"
   listarCards(construirURL(getComics, actualizarQueryParams("&orderBy=title")))
 }
 
